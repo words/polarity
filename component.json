@@ -1,0 +1,25 @@
+{
+  "name": "polarity",
+  "version": "0.0.1",
+  "description": "Detect the polarity (sentiment) of text",
+  "license": "MIT",
+  "keywords": [
+    "natural",
+    "language",
+    "afinn",
+    "sentiment",
+    "subjective",
+    "subjectivity",
+    "polarity",
+    "opinion",
+    "emotion",
+    "attitude"
+  ],
+  "repository": "wooorm/polarity",
+  "scripts": [
+    "index.js"
+  ],
+  "dependencies": {
+    "wooorm/afinn-111": "*"
+  }
+}
