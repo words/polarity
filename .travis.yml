@@ -8,7 +8,6 @@ deploy:
   provider: npm
   email: tituswormer@gmail.com
   api_key:
-    secure: kVRUR6vE8yHb3zDblXnup0k6t8p7max0aK++DYBZCSpnIF+rIzqTjg4FdDv8Hv0Hdi/52PiYrBSBw8VdCRGhQlwmVXzNOllAy7+ucZya9zlpmpvken7bjQDifgbKqkxplMyNaUgLggDTEVyfIcPbBAagiV/hrp+M6/viLw++GN0=
+    secure: bJ786caUOjqzmruTYZnx/Jfnx4fZvgzei8g1UsO7y+3b1jKWt1vna2cHYpnQPblffuXQN+5yoUx005YRUJGxfIU234jEp6tmOrRmWZu4PX1xr1hck127IyV6MQK9wcFV4S04yN6kiu7XcbNwafo6b2w8mZ7Dfanx7DEO421z7F8=
   on:
-    tags: true
-    repo: wooorm/franc
+    repo: wooorm/polarity
