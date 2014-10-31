@@ -20,6 +20,6 @@
     "index.js"
   ],
   "dependencies": {
-    "wooorm/afinn-111": "^0.1.0"
+    "wooorm/afinn-111": "^0.1.3"
   }
 }
