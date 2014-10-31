@@ -34,7 +34,7 @@
     "components/",
     "coverage/",
     "node_modules/",
-    "spec/",
+    "test/",
     "build-fixtures-file.js",
     "component.json",
     "package.json"

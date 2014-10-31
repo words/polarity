@@ -2,7 +2,7 @@
 
 var fixtures = {},
     iterator = -1,
-    directory = './spec',
+    directory = './test',
     fixtureDirectory = directory + '/fixtures',
     files, file, filename, fixture, fs, extensionIndex, polarity,
     start;
