@@ -6,14 +6,19 @@ Uses [wooorm/afinn-111](https://github.com/wooorm/afinn-111).
 
 ## Installation
 
-NPM:
+npm:
 ```sh
 $ npm install polarity
 ```
 
-Component.js:
+Component:
 ```sh
 $ component install wooorm/polarity
+```
+
+Bower:
+```sh
+$ bower install polarity
 ```
 
 ## Usage
