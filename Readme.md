@@ -108,10 +108,10 @@ Without the tokenisation step, **polarity** is of course much faster.
 
 ```
          benchmarks * 20 tweets (10 pos, 10 neg)
-  8,441 op/s » polarity -- this module
-  7,708 op/s » sentiment
-  3,950 op/s » sediment
-  2,604 op/s » Sentimental
+  7,099 op/s » polarity -- this module
+  4,484 op/s » sentiment
+  3,207 op/s » sediment
+  2,298 op/s » Sentimental
 ```
 
 ## License
