@@ -34,8 +34,8 @@ describe('polarity()', function () {
     it('should return a result object when an array-like value is given',
         function () {
             var result = polarity({
-                'length' : 1,
-                '1' : 'hate'
+                'length': 1,
+                '1': 'hate'
             });
             assert(typeof result === 'object');
             assert(typeof result.polarity === 'number');
@@ -67,7 +67,7 @@ describe('polarity()', function () {
             result = polarity(source).polarity;
 
         assert(polarity(source, {
-            'cat' : 5
+            'cat': 5
         }).polarity !== result);
 
         assert(polarity(source).polarity === result);
@@ -129,7 +129,7 @@ describe('polarity.inject()', function () {
             result = polarity(source).polarity;
 
         polarity.inject({
-            'cat' : 5
+            'cat': 5
         });
 
         assert(polarity(source).polarity !== result);

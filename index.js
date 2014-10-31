@@ -48,11 +48,11 @@ function polarity(values, inject) {
     }
 
     return {
-        'polarity' : positivity + negativity,
-        'positivity' : positivity,
-        'negativity' : negativity,
-        'positive' : positive,
-        'negative' : negative
+        'polarity': positivity + negativity,
+        'positivity': positivity,
+        'negativity': negativity,
+        'positive': positive,
+        'negative': negative
     };
 }
 
