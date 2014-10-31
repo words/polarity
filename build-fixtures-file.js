@@ -1,22 +1,30 @@
 'use strict';
 
-var fixtures = {},
-    iterator = -1,
-    directory = './test',
-    fixtureDirectory = directory + '/fixtures',
-    files, file, filename, fixture, fs, extensionIndex, polarity,
-    start;
+var fixtures,
+    directory,
+    fixtureDirectory,
+    fs,
+    files,
+    extensionIndex,
+    filename,
+    fixture,
+    start,
+    polarity;
+
+fixtures = {};
+
+directory = './test';
+fixtureDirectory = directory + '/fixtures';
 
 fs = require('fs');
 
 files = fs.readdirSync(fixtureDirectory);
 
-while (files[++iterator]) {
-    file = files[iterator];
+files.forEach(function (file) {
     extensionIndex = file.indexOf('.txt');
 
     if (extensionIndex === -1) {
-        continue;
+        return;
     }
 
     filename = file.substr(0, extensionIndex);
@@ -31,7 +39,8 @@ while (files[++iterator]) {
     }
 
     fixtures[polarity].push(fixture.trim());
-}
+});
 
-fixtures = JSON.stringify(fixtures, null, 4);
+fixtures = JSON.stringify(fixtures, null, 2);
+
 fs.writeFileSync(directory + '/fixtures.json', fixtures);
