@@ -15,6 +15,13 @@
     "emotion",
     "attitude"
   ],
+  "dependencies": {
+    "afinn-111": "^0.1.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wooorm/polarity.git"
+  },
   "author": "Titus Wormer <tituswormer@gmail.com>",
   "devDependencies": {
     "eslint": "^0.9.0",
@@ -22,10 +29,6 @@
     "jscs": "^1.7.0",
     "matcha": "^0.5.0",
     "mocha": "^2.0.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/wooorm/polarity.git"
   },
   "scripts": {
     "test": "node_modules/.bin/_mocha --reporter spec --check-leaks -u exports spec/polarity.spec.js",
@@ -41,8 +44,5 @@
     "coverage": "node_modules/.bin/istanbul cover node_modules/.bin/_mocha -- -- spec/polarity.spec.js",
     "prepublish": "npm run build-fixtures",
     "make": "npm run lint && npm run coverage"
-  },
-  "dependencies": {
-    "afinn-111": "^0.1.3"
   }
 }

@@ -15,11 +15,11 @@
     "emotion",
     "attitude"
   ],
+  "dependencies": {
+    "wooorm/afinn-111": "^0.1.3"
+  },
   "repository": "wooorm/polarity",
   "scripts": [
     "index.js"
-  ],
-  "dependencies": {
-    "wooorm/afinn-111": "^0.1.3"
-  }
+  ]
 }
