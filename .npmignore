@@ -1,13 +1,13 @@
 .*
 *.log
 *.txt
-benchmark/
 bower_components/
 build/
 components/
 coverage/
 node_modules/
 test/
+benchmark.js
 build-fixtures-file.js
 bower.json
 component.json

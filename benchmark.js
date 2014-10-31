@@ -4,8 +4,8 @@
 
 var fixtures, polarity, sentiment, sentimental, sediment;
 
-polarity = require('..');
-fixtures = require('../spec/fixtures.json');
+polarity = require('./');
+fixtures = require('./test/fixtures.json');
 
 try {
     sentiment = require('sentiment');
