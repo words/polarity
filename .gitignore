@@ -1,5 +1,7 @@
-node_modules
-components
 .DS_Store
-coverage
-spec/browser.spec.js
+*.log
+bower_components/
+build/
+components/
+node_modules/
+coverage/

@@ -1,2 +1,14 @@
-coverage
-.travis.yml
+.*
+*.log
+*.txt
+benchmark/
+bower_components/
+build/
+components/
+coverage/
+node_modules/
+spec/
+build-fixtures-file.js
+bower.json
+component.json
+History.md
