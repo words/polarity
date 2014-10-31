@@ -1,4 +1,4 @@
-# polarity [![Build Status](https://travis-ci.org/wooorm/polarity.svg?branch=master)](https://travis-ci.org/wooorm/polarity) [![Coverage Status](https://img.shields.io/coveralls/wooorm/polarity.svg)](https://coveralls.io/r/wooorm/polarity?branch=master)
+# polarity [![Build Status](https://img.shields.io/travis/wooorm/polarity.svg?style=flat)](https://travis-ci.org/wooorm/polarity) [![Coverage Status](https://img.shields.io/coveralls/wooorm/polarity.svg?style=flat)](https://coveralls.io/r/wooorm/polarity?branch=master)
 
 Detect the polarity of text, based on [AFINN-111](http://www2.imm.dtu.dk/pubdb/views/publication_details.php?id=6010).
 
@@ -87,24 +87,10 @@ Direct access to **afinn-111**.
 
 **polarity** supports all AFINN-111 words/phrases. **afinn-111** has more information on what words and phrases are [supported](https://github.com/wooorm/afinn-111#supported-words).
 
-## Other polarity detection libraries
-
-- [thisandagain/sentiment](https://github.com/thisandagain/sentiment) — Slower (but pretty good nonetheless), has tokeniser, async support;
-- [mileszim/sediment](https://github.com/mileszim/sediment) — Slower, has tokeniser.
-- [thinkroth/Sentimental](https://github.com/thinkroth/Sentimental) — Slower, has tokeniser.
-
 ## Benchmark
 
-Run the benchmark yourself:
-
-```sh
-$ npm run install-benchmark # Just once of course.
-$ npm run benchmark
-```
-
-On a MacBook Air, it detects the polarity of 168,820 tweets per second.
-This is with a manual tokenisation step (like the others do) taken into account.
-Without the tokenisation step, **polarity** is of course much faster.
+On a MacBook Air, it detects the polarity of 141,980 tweets per second.
+This is with a manual tokenisation step (like the competition) taken into account. Without the tokenisation step, **polarity** is much faster.
 
 ```
          benchmarks * 20 tweets (10 pos, 10 neg)
@@ -116,4 +102,4 @@ Without the tokenisation step, **polarity** is of course much faster.
 
 ## License
 
-MIT
+MIT © Titus Wormer
