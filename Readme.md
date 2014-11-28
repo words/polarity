@@ -104,4 +104,4 @@ This is with a manual tokenisation step (like the competition) taken into accoun
 
 ## License
 
-MIT © Titus Wormer
+MIT © [Titus Wormer](http://wooorm.com)
