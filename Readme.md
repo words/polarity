@@ -65,7 +65,7 @@ polarity(['darn', 'self-deluded', 'abandoned', 'dogs']);
 
 ## API
 
-### polarity(values[string]?, inject?)
+### polarity(values, inject?)
 
 Get a polarity result from given values, optionally with one time injections.
 
@@ -77,7 +77,7 @@ function tokenize(value) {
 }
 ```
 
-### polarity.inject(inject{word: weight})
+### polarity.inject(words)
 
 Replace AFINN weights with your own.
 
