@@ -91,15 +91,15 @@ Direct access to **afinn-111**.
 
 ## Benchmark
 
-On a MacBook Air, it detects the polarity of 141,980 tweets per second.
+On a MacBook Air, it detects the polarity of 142,300 tweets per second.
 This is with a manual tokenisation step (like the competition) taken into account. Without the tokenisation step, **polarity** is much faster.
 
 ```
          benchmarks * 20 tweets (10 pos, 10 neg)
-  7,099 op/s » polarity -- this module
-  4,484 op/s » sentiment
-  3,207 op/s » sediment
-  2,298 op/s » Sentimental
+  7,115 op/s » polarity -- this module
+  4,443 op/s » sentiment
+  3,252 op/s » sediment
+  2,319 op/s » Sentimental
 ```
 
 ## License
