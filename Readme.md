@@ -1,8 +1,6 @@
 # polarity [![Build Status](https://img.shields.io/travis/wooorm/polarity.svg?style=flat)](https://travis-ci.org/wooorm/polarity) [![Coverage Status](https://img.shields.io/coveralls/wooorm/polarity.svg?style=flat)](https://coveralls.io/r/wooorm/polarity?branch=master)
 
-Detect the polarity of text, based on [AFINN-111](http://www2.imm.dtu.dk/pubdb/views/publication_details.php?id=6010).
-
-Uses [wooorm/afinn-111](https://github.com/wooorm/afinn-111).
+Detect the polarity of text, based on [afinn-111](https://github.com/wooorm/afinn-111).
 
 ## Installation
 
