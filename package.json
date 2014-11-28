@@ -33,17 +33,18 @@
   "scripts": {
     "test": "node_modules/.bin/_mocha --reporter spec --check-leaks -u exports test/index.js",
     "test-travis": "node_modules/.bin/istanbul cover node_modules/.bin/_mocha --report lcovonly -- --reporter spec --check-leaks -u exports test/index.js",
-    "lint": "npm run lint-api && npm run lint-test && npm run lint-benchmark && npm run lint-script && npm run lint-style",
+    "coverage": "node_modules/.bin/istanbul cover node_modules/.bin/_mocha -- -- test/index.js",
     "lint-api": "node_modules/.bin/eslint index.js",
     "lint-test": "node_modules/.bin/eslint test/index.js --env mocha",
-    "lint-benchmark": "node_modules/.bin/eslint benchmark.js --global 'suite, bench, set'",
+    "lint-benchmark": "node_modules/.bin/eslint benchmark.js --global suite,bench,set",
     "lint-script": "node_modules/.bin/eslint build-fixtures-file.js",
     "lint-style": "node_modules/.bin/jscs index.js build-fixtures-file.js benchmark.js test/index.js --reporter=inline",
-    "build-fixtures": "node build-fixtures-file.js",
+    "lint": "npm run lint-api && npm run lint-test && npm run lint-benchmark && npm run lint-script && npm run lint-style",
+    "make": "npm run lint && npm run coverage",
     "install-benchmark": "npm install sentiment Sentimental sediment",
     "benchmark": "node_modules/.bin/matcha benchmark.js",
-    "coverage": "node_modules/.bin/istanbul cover node_modules/.bin/_mocha -- -- test/index.js",
-    "prepublish": "npm run build-fixtures",
-    "make": "npm run lint && npm run coverage"
+    "build-fixtures": "node build-fixtures-file.js",
+    "build": "npm run build-fixtures",
+    "prepublish": "npm run build"
   }
 }
