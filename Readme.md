@@ -24,14 +24,16 @@ $ bower install polarity
 ```js
 var polarity = require('polarity');
 
-polarity(['some', 'positive', 'happy', 'cats']); /* {
+polarity(['some', 'positive', 'happy', 'cats']);
+/* {
  *   polarity: 5,
  *   positive: [ 'positive', 'happy' ],
  *   negative: []
  * }
  */
 
-polarity(['darn', 'self-deluded', 'abandoned', 'dogs']); /* {
+polarity(['darn', 'self-deluded', 'abandoned', 'dogs']);
+/* {
  *   polarity: -4,
  *   positive: [],
  *   negative: [ 'self-deluded', 'abandoned' ]
@@ -40,7 +42,8 @@ polarity(['darn', 'self-deluded', 'abandoned', 'dogs']); /* {
 
 polarity(['some', 'positive', 'happy', 'cats'], {
   'cats' : Infinity
-}); /* {
+});
+/* {
  *   polarity: Infinity,
  *   positive: [ 'positive', 'happy', 'cats' ],
  *   negative: []
@@ -51,7 +54,8 @@ polarity.inject({
     'dogs' : -Infinity /* What?! */
 });
 
-polarity(['darn', 'self-deluded', 'abandoned', 'dogs']); /* {
+polarity(['darn', 'self-deluded', 'abandoned', 'dogs']);
+/* {
  *   polarity: -Infinity,
  *   positive: [],
  *   negative: [ 'self-deluded', 'abandoned', 'dogs' ]
