@@ -24,9 +24,12 @@
   },
   "author": "Titus Wormer <tituswormer@gmail.com>",
   "devDependencies": {
+    "emoji-emotion": "^0.0.1",
     "eslint": "^0.10.0",
+    "gemoji": "^0.2.0",
     "istanbul": "^0.3.0",
     "jscs": "^1.0.0",
+    "markdown-table": "^0.2.0",
     "matcha": "^0.6.0",
     "mocha": "^2.0.0"
   },
@@ -37,14 +40,16 @@
     "lint-api": "node_modules/.bin/eslint index.js",
     "lint-test": "node_modules/.bin/eslint test/index.js --env mocha",
     "lint-benchmark": "node_modules/.bin/eslint benchmark.js --global suite,bench,set",
-    "lint-script": "node_modules/.bin/eslint build-fixtures-file.js",
-    "lint-style": "node_modules/.bin/jscs index.js build-fixtures-file.js benchmark.js test/index.js --reporter=inline",
+    "lint-script": "node_modules/.bin/eslint script/build-emoji.js script/build-fixtures-file.js",
+    "lint-style": "node_modules/.bin/jscs index.js script/build-emoji.js script/build-fixtures-file.js benchmark.js test/index.js --reporter=inline",
     "lint": "npm run lint-api && npm run lint-test && npm run lint-benchmark && npm run lint-script && npm run lint-style",
     "make": "npm run lint && npm run coverage",
     "install-benchmark": "npm install sentiment Sentimental sediment",
     "benchmark": "node_modules/.bin/matcha benchmark.js",
-    "build-fixtures": "node build-fixtures-file.js",
-    "build": "npm run build-fixtures",
+    "build-fixtures": "node script/build-fixtures-file.js",
+    "build-emoji": "node script/build-emoji.js",
+    "build-support": "node script/build-support.js",
+    "build": "npm run build-fixtures && npm run build-emoji && npm run build-support",
     "prepublish": "npm run build"
   }
 }

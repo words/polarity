@@ -1,6 +1,6 @@
 # polarity [![Build Status](https://img.shields.io/travis/wooorm/polarity.svg?style=flat)](https://travis-ci.org/wooorm/polarity) [![Coverage Status](https://img.shields.io/coveralls/wooorm/polarity.svg?style=flat)](https://coveralls.io/r/wooorm/polarity?branch=master)
 
-Detect the polarity of text, based on [afinn-111](https://github.com/wooorm/afinn-111).
+Detect the polarity of text, based on [afinn-111](https://github.com/wooorm/afinn-111) and [emoji-emotion](https://github.com/wooorm/emoji-emotion).
 
 ## Installation
 
@@ -73,21 +73,21 @@ Get a polarity result from given values, optionally with one time injections.
 
 ```js
 function tokenize(value) {
-    return value.toLowerCase().replace(/[^-a-z0-9 ]/g, '').split(' ');
+    return value.toLowerCase().match(/\S+/g);
 }
 ```
 
 ### polarity.inject(words)
 
-Replace AFINN weights with your own.
+Insert custom values.
 
-### polarity.afinn
+### polarity.polarities
 
-Direct access to **afinn-111**.
+Direct access to the internal values.
 
 ## Supported words
 
-**polarity** supports all AFINN-111 words/phrases. **afinn-111** has more information on what words and phrases are [supported](https://github.com/wooorm/afinn-111#supported-words).
+See [Support.md](Support.md).
 
 ## Benchmark
 
@@ -96,10 +96,10 @@ This is with a manual tokenisation step (like the competition) taken into accoun
 
 ```
          benchmarks * 20 tweets (10 pos, 10 neg)
-  7,115 op/s » polarity -- this module
-  4,443 op/s » sentiment
-  3,252 op/s » sediment
-  2,319 op/s » Sentimental
+  7,218 op/s » polarity -- this module
+  4,374 op/s » sentiment
+  3,182 op/s » sediment
+  2,284 op/s » Sentimental
 ```
 
 ## License

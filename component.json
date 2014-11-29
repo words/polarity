@@ -21,5 +21,8 @@
   "repository": "wooorm/polarity",
   "scripts": [
     "index.js"
+  ],
+  "json" : [
+    "data/emoji.json"
   ]
 }

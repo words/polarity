@@ -4,9 +4,19 @@
  * Dependencies.
  */
 
-var afinn;
+var afinn,
+    emoji;
 
 afinn = require('afinn-111');
+emoji = require('./data/emoji.json');
+
+/**
+ * Polarities.
+ */
+
+var polarities;
+
+polarities = {};
 
 /**
  * Cached methods.
@@ -25,8 +35,8 @@ has = Object.prototype.hasOwnProperty;
  */
 
 function getPolarity(value, inject) {
-    if (has.call(afinn, value)) {
-        return afinn[value];
+    if (has.call(polarities, value)) {
+        return polarities[value];
     } else if (inject && has.call(inject, value)) {
         return inject[value];
     }
@@ -93,7 +103,7 @@ function polarity(values, inject) {
 }
 
 /**
- * Inject values on the `afinn` object.
+ * Inject values on the `polarities` object.
  *
  * @param {Object.<string, number>} inject
  */
@@ -104,10 +114,22 @@ function inject(values) {
     for (value in values) {
         /* istanbul ignore else */
         if (has.call(values, value)) {
-            afinn[value] = values[value];
+            polarities[value] = values[value];
         }
     }
 }
+
+/**
+ * Inject `afinn`
+ */
+
+inject(afinn);
+
+/**
+ * Inject `emoji`
+ */
+
+inject(emoji);
 
 /**
  * Expose `inject` on `polarity`.
@@ -116,10 +138,10 @@ function inject(values) {
 polarity.inject = inject;
 
 /**
- * Expose `afinn` on `polarity`.
+ * Expose `polarities` on `polarity`.
  */
 
-polarity.afinn = afinn;
+polarity.polarities = polarities;
 
 /**
  * Expose `polarity`.

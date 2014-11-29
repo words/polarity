@@ -20,7 +20,7 @@ assert = require('assert');
  */
 
 function tokenize(value) {
-    return value.toLowerCase().replace(/[^-a-z0-9 ]/g, '').split(' ');
+    return value.toLowerCase().match(/\S+/g);
 }
 
 /**
@@ -118,7 +118,8 @@ describe('polarity()', function () {
         assert(polarity(source).polarity === result);
     });
 
-    it('should not throw when reaching for prototypal functions on afinn',
+    it('should not throw when reaching for prototypal ' +
+        'functions on `polarities`',
         function () {
             assert.doesNotThrow(function () {
                 var result;
@@ -129,6 +130,44 @@ describe('polarity()', function () {
             });
         }
     );
+});
+
+describe('emoji', function () {
+    it('should accept gemoji', function () {
+        var gemoji,
+            result;
+
+        gemoji = ':smile:';
+
+        result = polarity(tokenize('He made me ' + gemoji));
+
+        assert(result.polarity === 3);
+        assert(result.positivity === 3);
+        assert(result.positive.length === 1);
+        assert(result.positive[0] === gemoji);
+        assert(result.negativity === 0);
+        assert(result.negative.length === 0);
+    });
+
+    it('should accept emoji', function () {
+        var emoji,
+            result;
+
+        /**
+         * Represents `scream`.
+         */
+
+        emoji = '\ud83d\ude31';
+
+        result = polarity(tokenize('He made me ' + emoji));
+
+        assert(result.polarity === -4);
+        assert(result.positivity === 0);
+        assert(result.positive.length === 0);
+        assert(result.negativity === -4);
+        assert(result.negative.length === 1);
+        assert(result.negative[0] === emoji);
+    });
 });
 
 describe('algorithm', function () {

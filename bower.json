@@ -33,9 +33,10 @@
     "components/",
     "coverage/",
     "node_modules/",
+    "data/",
+    "script/",
     "test/",
     "benchmark.js",
-    "build-fixtures-file.js",
     "component.json",
     "package.json"
   ]

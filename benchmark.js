@@ -71,7 +71,7 @@ function eachFixture(callback) {
  */
 
 function tokenize(value) {
-    return value.toLowerCase().replace(/[^-a-z0-9 ]/g, '').split(' ');
+    return value.toLowerCase().match(/\S+/g);
 }
 
 /**
