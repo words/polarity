@@ -1,46 +1,31 @@
 'use strict';
 
-var fixtures,
-    directory,
-    fixtureDirectory,
-    fs,
-    files,
-    extensionIndex,
-    filename,
-    fixture,
-    start,
-    polarity;
+var fs = require('fs');
+var path = require('path');
 
-fixtures = {};
+var fixtures = {};
 
-directory = './test';
-fixtureDirectory = directory + '/fixtures';
-
-fs = require('fs');
-
-files = fs.readdirSync(fixtureDirectory);
-
-files.forEach(function (file) {
-    extensionIndex = file.indexOf('.txt');
+fs
+  .readdirSync(path.join('test', 'fixtures'))
+  .forEach(function (file) {
+    var extensionIndex = file.indexOf('.txt');
 
     if (extensionIndex === -1) {
-        return;
+      return;
     }
 
-    filename = file.substr(0, extensionIndex);
-    fixture = fs.readFileSync(fixtureDirectory + '/' + file, 'utf-8');
-
-    start = filename.indexOf('-') + 1;
-
-    polarity = filename.substr(start, filename.lastIndexOf('-') - start);
+    var filename = file.substr(0, extensionIndex);
+    var fixture = fs.readFileSync(path.join('test', 'fixtures', file), 'utf8');
+    var start = filename.indexOf('-') + 1;
+    var polarity = filename.substr(start, filename.lastIndexOf('-') - start);
 
     if (!(polarity in fixtures)) {
-        fixtures[polarity] = [];
+      fixtures[polarity] = [];
     }
 
     fixtures[polarity].push(fixture.trim());
-});
+  });
 
 fixtures = JSON.stringify(fixtures, null, 2);
 
-fs.writeFileSync(directory + '/fixtures.json', fixtures);
+fs.writeFileSync(path.join('test', 'fixtures.json'), fixtures + '\n');

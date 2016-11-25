@@ -5,16 +5,19 @@ Detect the polarity of text, based on [afinn-111](https://github.com/wooorm/afin
 ## Installation
 
 npm:
+
 ```sh
 $ npm install polarity
 ```
 
 Component:
+
 ```sh
 $ component install wooorm/polarity
 ```
 
 Bower:
+
 ```sh
 $ bower install polarity
 ```

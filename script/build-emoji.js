@@ -1,43 +1,17 @@
 'use strict';
 
-/**
- * Dependencies.
- */
+var fs = require('fs');
+var emotion = require('emoji-emotion');
+var gemoji = require('gemoji');
 
-var emotion,
-    gemoji,
-    fs;
-
-emotion = require('emoji-emotion');
-gemoji = require('gemoji');
-fs = require('fs');
-
-/**
- * Data.
- */
-
-var data;
-
-data = {};
-
-/**
- * Add unicode emoji.
- */
+var data = {};
 
 emotion.forEach(function (info) {
-    data[info.emoji] = info.polarity;
+  data[info.emoji] = info.polarity;
 });
-
-/**
- * Add gemoji shortcodes.
- */
 
 emotion.forEach(function (info) {
-    data[':' + gemoji.unicode[info.emoji].name + ':'] = info.polarity;
+  data[':' + gemoji.unicode[info.emoji].name + ':'] = info.polarity;
 });
-
-/**
- * Write.
- */
 
 fs.writeFileSync('data/emoji.json', JSON.stringify(data, null, 2));

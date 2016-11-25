@@ -1,236 +1,163 @@
 'use strict';
 
-/**
- * Dependencies.
- */
+var test = require('tape');
+var fixtures = require('./fixtures');
+var polarity = require('..');
 
-var polarity,
-    assert,
-    fixtures;
+test('polarity()', function (t) {
+  t.equal(typeof polarity, 'function', 'should be a `function`');
 
-polarity = require('..');
-fixtures = require('./fixtures.json');
-assert = require('assert');
+  t.deepEqual(
+    polarity(['cool']),
+    {
+      polarity: 1,
+      positivity: 1,
+      negativity: 0,
+      positive: ['cool'],
+      negative: []
+    },
+    'should return a result object'
+  );
 
-/**
- * Simple word tokenizer.
- *
- * @param {string} value - Body of text, such as a paragraph.
- * @return {Array.<string>} List of lower-case words.
- */
+  t.deepEqual(
+    polarity(),
+    {
+      polarity: 0,
+      positivity: 0,
+      negativity: 0,
+      positive: [],
+      negative: []
+    },
+    'should return a result object when no value is given'
+  );
 
-function tokenize(value) {
-    return value.toLowerCase().match(/\S+/g);
-}
+  t.deepEqual(
+    polarity({
+      length: 1,
+      0: 'hate'
+    }),
+    {
+      polarity: -3,
+      positivity: 0,
+      negativity: -3,
+      positive: [],
+      negative: ['hate']
+    },
+    'should return a result object when an array-like value is given'
+  );
 
-/**
- * Tests.
- */
+  t.deepEqual(
+    polarity(Infinity),
+    {
+      polarity: 0,
+      positivity: 0,
+      negativity: 0,
+      positive: [],
+      negative: []
+    },
+    'should return a result object when an array-like value is given'
+  );
 
-describe('polarity()', function () {
-    it('should be a `function`', function () {
-        assert(typeof polarity === 'function');
-    });
+  t.deepEqual(
+    polarity(['hate', 'hate', 'cat', 'hate', 'hate'], {cat: 5}),
+    {
+      polarity: -7,
+      positivity: 5,
+      negativity: -12,
+      positive: ['cat'],
+      negative: ['hate', 'hate', 'hate', 'hate']
+    },
+    'should accept a temporary inject object'
+  );
 
-    it('should return a result object', function () {
-        var result;
+  polarity.inject({cat: 5});
 
-        result = polarity(['cool']);
+  t.deepEqual(
+    polarity(['hate', 'hate', 'cat', 'hate', 'hate']),
+    {
+      polarity: -7,
+      positivity: 5,
+      negativity: -12,
+      positive: ['cat'],
+      negative: ['hate', 'hate', 'hate', 'hate']
+    },
+    '`inject()`'
+  );
 
-        assert(typeof result === 'object');
+  polarity.inject({cat: 0});
 
-        assert(typeof result.polarity === 'number');
+  t.deepEqual(
+    polarity(['toString', 'prototype', 'constructor']),
+    {
+      polarity: 0,
+      positivity: 0,
+      negativity: 0,
+      positive: [],
+      negative: []
+    },
+    'should not throw when reaching for prototypal functions on `polarities`'
+  );
 
-        assert('length' in result.positive);
-        assert('length' in result.negative);
+  t.deepEqual(
+    polarity(['he', 'made', 'me', ':smile:']),
+    {
+      polarity: 3,
+      positivity: 3,
+      negativity: 0,
+      positive: [':smile:'],
+      negative: []
+    },
+    'should accept gemoji'
+  );
 
-        assert(result.positive.length > -1);
-        assert(result.negative.length > -1);
-    });
+  t.deepEqual(
+    polarity(['he', 'made', 'me', '\ud83d\ude31']),
+    {
+      polarity: -4,
+      positivity: 0,
+      negativity: -4,
+      positive: [],
+      negative: ['\ud83d\ude31']
+    },
+    'should accept emoji'
+  );
 
-    it('should return a result object when no value is given', function () {
-        var result;
-
-        result = polarity();
-
-        assert(typeof result === 'object');
-
-        assert(typeof result.polarity === 'number');
-
-        assert('length' in result.positive);
-        assert('length' in result.negative);
-
-        assert(result.positive.length > -1);
-        assert(result.negative.length > -1);
-    });
-
-    it('should return a result object when an array-like value is given',
-        function () {
-            var result;
-
-            result = polarity({
-                'length': 1,
-                '0': 'hate'
-            });
-
-            assert(typeof result === 'object');
-
-            assert(typeof result.polarity === 'number');
-
-            assert('length' in result.positive);
-            assert('length' in result.negative);
-
-            assert(result.positive.length > -1);
-            assert(result.negative.length > -1);
-        }
-    );
-
-    it('should return a result object when a non-array-like value is given',
-        function () {
-            var result;
-
-            result = polarity(Infinity);
-
-            assert(typeof result === 'object');
-
-            assert(typeof result.polarity === 'number');
-
-            assert('length' in result.positive);
-            assert('length' in result.negative);
-
-            assert(result.positive.length > -1);
-            assert(result.negative.length > -1);
-        }
-    );
-
-    it('should accept a temporary inject object', function () {
-        var source,
-            result;
-
-        source = tokenize('hate hate cat hate hate');
-
-        result = polarity(source).polarity;
-
-        assert(polarity(source, {
-            'cat': 5
-        }).polarity !== result);
-
-        assert(polarity(source).polarity === result);
-    });
-
-    it('should not throw when reaching for prototypal ' +
-        'functions on `polarities`',
-        function () {
-            assert.doesNotThrow(function () {
-                var result;
-
-                result = polarity(['toString', 'prototype', 'constructor']);
-
-                assert(typeof result.polarity === 'number');
-            });
-        }
-    );
+  t.end();
 });
 
-describe('emoji', function () {
-    it('should accept gemoji', function () {
-        var gemoji,
-            result;
+test('algorithm', function (t) {
+  var type;
 
-        gemoji = ':smile:';
+  for (type in fixtures) {
+    classifyPolarities(fixtures[type], type);
+  }
 
-        result = polarity(tokenize('He made me ' + gemoji));
+  t.end();
 
-        assert(result.polarity === 3);
-        assert(result.positivity === 3);
-        assert(result.positive.length === 1);
-        assert(result.positive[0] === gemoji);
-        assert(result.negativity === 0);
-        assert(result.negative.length === 0);
-    });
+  function classifyPolarities(typedFixtures, type) {
+    typedFixtures.forEach(function (fixture) {
+      t.doesNotThrow(
+        function () {
+          var result = polarity(tokenize(fixture));
+          var isPositive = type === 'positive';
 
-    it('should accept emoji', function () {
-        var emoji,
-            result;
-
-        /**
-         * Represents `scream`.
-         */
-
-        emoji = '\ud83d\ude31';
-
-        result = polarity(tokenize('He made me ' + emoji));
-
-        assert(result.polarity === -4);
-        assert(result.positivity === 0);
-        assert(result.positive.length === 0);
-        assert(result.negativity === -4);
-        assert(result.negative.length === 1);
-        assert(result.negative[0] === emoji);
-    });
-});
-
-describe('algorithm', function () {
-    var type;
-
-    function classifyPolarity(fixture, type) {
-        var result,
-            isPositive;
-
-        result = polarity(tokenize(fixture));
-
-        isPositive = type === 'positive';
-
-        /* istanbul ignore if */
-        if (
-            (
-                result.polarity < 1 &&
-                isPositive
-            ) ||
-            (
-                result.polarity > 1 &&
-                !isPositive
-            )
-        ) {
+          if (
+            (result.polarity < 1 && isPositive) ||
+            (result.polarity > 1 && !isPositive)
+          ) {
             throw new Error(
-                'Expected ' + isPositive + ', but got `' +
-                result.polarity + '`'
-            )
-        }
-    }
-
-    function classifyPolarities(typedFixtures, type) {
-        typedFixtures.forEach(function (fixture) {
-            it('should classify `' + fixture + '` as `' + type + '`',
-                function () {
-                    classifyPolarity(fixture, type);
-                }
+              'Expected ' + isPositive + ', but got `' +
+              result.polarity + '`'
             );
-        });
-    }
-
-    for (type in fixtures) {
-        classifyPolarities(fixtures[type], type);
-    }
+          }
+        },
+        type + ': `' + fixture + '`'
+      );
+    });
+  }
 });
 
-describe('polarity.inject()', function () {
-    it('should be a `function`', function () {
-        assert(typeof polarity.inject === 'function');
-    });
-
-    it('should inject values', function () {
-        var source,
-            result;
-
-        source = tokenize('hate hate cat hate hate');
-
-        result = polarity(source).polarity;
-
-        polarity.inject({
-            'cat': 5
-        });
-
-        assert(polarity(source).polarity !== result);
-    });
-});
+/* Simple word tokenizer. */
+function tokenize(value) {
+  return value.toLowerCase().match(/\S+/g);
+}

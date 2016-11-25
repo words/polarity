@@ -15,41 +15,61 @@
     "emotion",
     "attitude"
   ],
+  "repository": "https://github.com/wooorm/polarity",
+  "bugs": "https://github.com/wooorm/polarity/issues",
+  "author": "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)",
+  "contributors": [
+    "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)"
+  ],
+  "files": [
+    "index.js",
+    "data/emoji.json"
+  ],
   "dependencies": {
-    "afinn-111": "^0.1.3"
+    "afinn-111": "^1.1.0"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/wooorm/polarity.git"
-  },
-  "author": "Titus Wormer <tituswormer@gmail.com>",
   "devDependencies": {
-    "emoji-emotion": "^0.0.1",
-    "eslint": "^0.10.0",
-    "gemoji": "^0.2.0",
-    "istanbul": "^0.3.0",
-    "jscs": "^1.0.0",
-    "markdown-table": "^0.2.0",
-    "matcha": "^0.6.0",
-    "mocha": "^2.0.0"
+    "browserify": "^13.1.1",
+    "emoji-emotion": "^1.0.0",
+    "esmangle": "^1.0.1",
+    "gemoji": "^2.0.1",
+    "markdown-table": "^1.0.0",
+    "mocha": "^3.2.0",
+    "nyc": "^10.0.0",
+    "remark-cli": "^2.1.0",
+    "remark-preset-wooorm": "^1.0.0",
+    "tape": "^4.6.3",
+    "xo": "^0.17.1"
   },
   "scripts": {
-    "test": "node_modules/.bin/_mocha --reporter spec --check-leaks -u exports test/index.js",
-    "test-travis": "node_modules/.bin/istanbul cover node_modules/.bin/_mocha --report lcovonly -- --reporter spec --check-leaks -u exports test/index.js",
-    "coverage": "node_modules/.bin/istanbul cover node_modules/.bin/_mocha -- -- test/index.js",
-    "lint-api": "node_modules/.bin/eslint index.js",
-    "lint-test": "node_modules/.bin/eslint test/index.js --env mocha",
-    "lint-benchmark": "node_modules/.bin/eslint benchmark.js --global suite,bench,set",
-    "lint-script": "node_modules/.bin/eslint script/build-emoji.js script/build-fixtures-file.js",
-    "lint-style": "node_modules/.bin/jscs index.js script/build-emoji.js script/build-fixtures-file.js benchmark.js test/index.js --reporter=inline",
-    "lint": "npm run lint-api && npm run lint-test && npm run lint-benchmark && npm run lint-script && npm run lint-style",
-    "make": "npm run lint && npm run coverage",
-    "install-benchmark": "npm install sentiment Sentimental sediment",
-    "benchmark": "node_modules/.bin/matcha benchmark.js",
-    "build-fixtures": "node script/build-fixtures-file.js",
-    "build-emoji": "node script/build-emoji.js",
-    "build-support": "node script/build-support.js",
-    "build": "npm run build-fixtures && npm run build-emoji && npm run build-support",
-    "prepublish": "npm run build"
+    "build-md": "remark . -qfo",
+    "build-emoji": "node script/build-emoji",
+    "build-fixtures": "node script/build-fixtures-file",
+    "build-support": "node script/build-support",
+    "build-bundle": "browserify index.js --bare -s polarity > polarity.js",
+    "build-mangle": "esmangle polarity.js > polarity.min.js",
+    "build": "npm run build-md && npm run build-emoji && npm run build-fixtures && npm run build-support && npm run build-bundle && npm run build-mangle",
+    "lint": "xo",
+    "test-api": "node test",
+    "test-coverage": "nyc --reporter lcov tape test.js",
+    "test": "npm run build && npm run lint && npm run test-api"
+  },
+  "nyc": {
+    "check-coverage": true,
+    "lines": 100,
+    "functions": 100,
+    "branches": 100
+  },
+  "xo": {
+    "space": true,
+    "rules": {
+      "guard-for-in": "off"
+    },
+    "ignores": [
+      "polarity.js"
+    ]
+  },
+  "remarkConfig": {
+    "presets": "wooorm"
   }
 }
