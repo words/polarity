@@ -48,7 +48,7 @@
     "build": "npm run build-md && npm run build-emoji && npm run build-bundle && npm run build-mangle",
     "lint": "xo",
     "test-api": "node test",
-    "test-coverage": "nyc --reporter lcov tape test.js",
+    "test-coverage": "nyc --reporter lcov tape test/index.js",
     "test": "npm run build && npm run lint && npm run test-api"
   },
   "nyc": {
