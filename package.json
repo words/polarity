@@ -42,7 +42,7 @@
   },
   "scripts": {
     "build-md": "remark . -qfo",
-    "build-emoji": "node script/build-emoji",
+    "build-emoji": "node build",
     "build-bundle": "browserify index.js --bare -s polarity > polarity.js",
     "build-mangle": "esmangle polarity.js > polarity.min.js",
     "build": "npm run build-md && npm run build-emoji && npm run build-bundle && npm run build-mangle",
