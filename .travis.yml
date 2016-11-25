@@ -3,6 +3,7 @@ node_js:
 - '4.0'
 - '7.0'
 after_script: bash <(curl -s https://codecov.io/bash)
+sudo: false
 deploy:
   - provider: npm
     email: tituswormer@gmail.com
