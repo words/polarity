@@ -1,13 +1,22 @@
 language: node_js
-script: npm run-script test-travis
 node_js:
-- '0.10'
-- '0.11'
-after_script: npm install coveralls@2.10.0 && cat ./coverage/lcov.info | coveralls
+- '4.0'
+- '7.0'
+after_script: bash <(curl -s https://codecov.io/bash)
 deploy:
-  provider: npm
-  email: tituswormer@gmail.com
-  api_key:
-    secure: bJ786caUOjqzmruTYZnx/Jfnx4fZvgzei8g1UsO7y+3b1jKWt1vna2cHYpnQPblffuXQN+5yoUx005YRUJGxfIU234jEp6tmOrRmWZu4PX1xr1hck127IyV6MQK9wcFV4S04yN6kiu7XcbNwafo6b2w8mZ7Dfanx7DEO421z7F8=
-  on:
-    repo: wooorm/polarity
+  - provider: npm
+    email: tituswormer@gmail.com
+    api_key:
+      secure: e4QZw/v8DqIHAobum+cV0zs8KWJuVLffKnYNslenac1GcS41Gd7qWKktOyzkKWygLTHwvnMRbsi+MhZR1+McbpgXGPF4iIVnUUMmqqKz3/K2YTYWGA+vR92qnpAufU46G9i96xp0/m4A+IxGtCJ/1e8w54DOKA1PHEE/Obi8xuw=
+    on:
+      tags: true
+      node: '4.0'
+  - provider: releases
+    api_key:
+      secure: JcMwhSn12FhxW5wcaSYj4SzLyr40bqhwD+GDKi724y1yiqL7U2hvkdSFHG+QMIN7w4qwsSWYIFQIcIolO9bki3MA+y4symYv0X9VolxjzPw2BJNXj2179JEUXIDQjm8yYOZetEVd7OTYDUSy8qI9qoyn1Rmni7AhWm0MGHIN0hM=
+    file:
+      - "polarity.js"
+      - "polarity.min.js"
+    on:
+      tags: true
+      node: '7.0'
