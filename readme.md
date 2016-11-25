@@ -1,25 +1,14 @@
-# polarity [![Build Status](https://img.shields.io/travis/wooorm/polarity.svg?style=flat)](https://travis-ci.org/wooorm/polarity) [![Coverage Status](https://img.shields.io/coveralls/wooorm/polarity.svg?style=flat)](https://coveralls.io/r/wooorm/polarity?branch=master)
+# polarity [![Build Status][travpolarity]][travis] [![Coverage Status][codecov-badge]][codecov]
 
-Detect the polarity of text, based on [afinn-111](https://github.com/wooorm/afinn-111) and [emoji-emotion](https://github.com/wooorm/emoji-emotion).
+Detect the polarity of text, based on [**afinn-111**][afinn] and
+[**emoji-emotion**][emoji].
 
 ## Installation
 
-npm:
+[npm][]:
 
-```sh
-$ npm install polarity
-```
-
-Component:
-
-```sh
-$ component install wooorm/polarity
-```
-
-Bower:
-
-```sh
-$ bower install polarity
+```bash
+npm install polarity
 ```
 
 ## Usage
@@ -28,79 +17,96 @@ $ bower install polarity
 var polarity = require('polarity');
 
 polarity(['some', 'positive', 'happy', 'cats']);
-/* {
- *   polarity: 5,
- *   positive: [ 'positive', 'happy' ],
- *   negative: []
- * }
- */
+```
 
+Yields:
+
+```js
+{
+  polarity: 5,
+  positivity: 5,
+  negativity: 0,
+  positive: ['happy', 'positive'],
+  negative: []
+}
+```
+
+```js
 polarity(['darn', 'self-deluded', 'abandoned', 'dogs']);
-/* {
- *   polarity: -4,
- *   positive: [],
- *   negative: [ 'self-deluded', 'abandoned' ]
- * }
- */
+```
 
-polarity(['some', 'positive', 'happy', 'cats'], {
-  'cats' : Infinity
-});
-/* {
- *   polarity: Infinity,
- *   positive: [ 'positive', 'happy', 'cats' ],
- *   negative: []
- * }
- */
+Yields:
 
-polarity.inject({
-    'dogs' : -Infinity /* What?! */
-});
-
-polarity(['darn', 'self-deluded', 'abandoned', 'dogs']);
-/* {
- *   polarity: -Infinity,
- *   positive: [],
- *   negative: [ 'self-deluded', 'abandoned', 'dogs' ]
- * }
- */
+```js
+{
+  polarity: -4,
+  positivity: 0,
+  negativity: -4,
+  positive: [],
+  negative: ['abandoned', 'self-deluded']
+}
 ```
 
 ## API
 
-### polarity(values, inject?)
+### `polarity(words[, inject])`
 
 Get a polarity result from given values, optionally with one time injections.
 
-**polarity** does not tokenise values. There are better tokenisers around (hint hint, **[parse-latin](https://github.com/wooorm/parse-latin)**). However, the following will work pretty good:
+**polarity** does not tokenise values.  There are better tokenisers around
+([**parse-latin**][latin]).  However, the following will work pretty good:
 
 ```js
 function tokenize(value) {
-    return value.toLowerCase().match(/\S+/g);
+  return value.toLowerCase().match(/\S+/g);
 }
 ```
 
-### polarity.inject(words)
+###### Parameters
+
+*   `words` (`Array.<string>`) — Words to parse;
+*   `inject` (`Object.<number>`, optional) — Custom valences for words.
+
+###### Returns
+
+`Object`:
+
+*   `polarity` (`number`) — Calculated polarity of input;
+*   `positivity` (`number`) — Total positivity;
+*   `negativity` (`number`) — Total negativity;
+*   `positive` (`Array.<string>`) — All positive words;
+*   `negative` (`Array.<string>`) — All negative words.
+
+### `polarity.inject(words)`
 
 Insert custom values.
 
-### polarity.polarities
+### `polarity.polarities`
 
 Direct access to the internal values.
 
-## Benchmark
-
-On a MacBook Air, it detects the polarity of 142,300 tweets per second.
-This is with a manual tokenisation step (like the competition) taken into account. Without the tokenisation step, **polarity** is much faster.
-
-```
-         benchmarks * 20 tweets (10 pos, 10 neg)
-  7,218 op/s » polarity -- this module
-  4,374 op/s » sentiment
-  3,182 op/s » sediment
-  2,284 op/s » Sentimental
-```
-
 ## License
 
-MIT © [Titus Wormer](http://wooorm.com)
+[MIT][license] © [Titus Wormer][author]
+
+<!-- Definitions -->
+
+[travpolarity]: https://img.shields.io/travis/wooorm/polarity.svg
+
+[travis]: https://travis-ci.org/wooorm/polarity
+
+[codecov-badge]: https://img.shields.io/codecov/c/github/wooorm/polarity.svg
+
+[codecov]: https://codecov.io/github/wooorm/polarity
+
+[npm]: https://docs.npmjs.com/cli/install
+
+[license]: LICENSE
+
+[author]: http://wooorm.com
+
+[afinn]: https://github.com/wooorm/afinn-111
+
+[emoji]: https://github.com/wooorm/emoji-emotion
+
+[latin]: https://github.com/wooorm/parse-latin
