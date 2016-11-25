@@ -2,7 +2,7 @@
 
 var afinn = require('afinn-111');
 var has = require('has');
-var emoji = require('./data/emoji.json');
+var emoji = require('./emoji');
 
 module.exports = polarity;
 polarity.inject = inject;

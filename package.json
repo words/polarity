@@ -23,7 +23,7 @@
   ],
   "files": [
     "index.js",
-    "data/emoji.json"
+    "emoji.json"
   ],
   "dependencies": {
     "afinn-111": "^1.1.0",

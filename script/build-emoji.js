@@ -8,10 +8,7 @@ var data = {};
 
 emotion.forEach(function (info) {
   data[info.emoji] = info.polarity;
-});
-
-emotion.forEach(function (info) {
   data[':' + gemoji.unicode[info.emoji].name + ':'] = info.polarity;
 });
 
-fs.writeFileSync('data/emoji.json', JSON.stringify(data, null, 2));
+fs.writeFileSync('emoji.json', JSON.stringify(data, null, 2) + '\n');
