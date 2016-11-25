@@ -1,7 +1,8 @@
 'use strict';
 
+var fs = require('fs');
+var path = require('path');
 var test = require('tape');
-var fixtures = require('./fixtures');
 var polarity = require('..');
 
 test('polarity()', function (t) {
@@ -126,35 +127,38 @@ test('polarity()', function (t) {
 });
 
 test('algorithm', function (t) {
-  var type;
+  var root = path.join('test', 'fixtures');
 
-  for (type in fixtures) {
-    classifyPolarities(fixtures[type], type);
-  }
+  fs
+    .readdirSync(root)
+    .forEach(function (filename) {
+      if (path.extname(filename) !== '.txt') {
+        return;
+      }
 
-  t.end();
+      var doc = fs.readFileSync(path.join(root, filename), 'utf8').trim();
+      var type = path.basename(filename, '.txt').split('-')[1];
 
-  function classifyPolarities(typedFixtures, type) {
-    typedFixtures.forEach(function (fixture) {
       t.doesNotThrow(
         function () {
-          var result = polarity(tokenize(fixture));
-          var isPositive = type === 'positive';
+          var result = polarity(tokenize(doc));
+          var positive = type === 'positive';
 
           if (
-            (result.polarity < 1 && isPositive) ||
-            (result.polarity > 1 && !isPositive)
+            (result.polarity < 1 && positive) ||
+            (result.polarity > 1 && !positive)
           ) {
             throw new Error(
-              'Expected ' + isPositive + ', but got `' +
+              'Expected ' + positive + ', but got `' +
               result.polarity + '`'
             );
           }
         },
-        type + ': `' + fixture + '`'
+        type + ': `' + doc + '`'
       );
     });
-  }
+
+  t.end();
 });
 
 /* Simple word tokenizer. */

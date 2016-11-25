@@ -45,11 +45,10 @@
   "scripts": {
     "build-md": "remark . -qfo",
     "build-emoji": "node script/build-emoji",
-    "build-fixtures": "node script/build-fixtures-file",
     "build-support": "node script/build-support",
     "build-bundle": "browserify index.js --bare -s polarity > polarity.js",
     "build-mangle": "esmangle polarity.js > polarity.min.js",
-    "build": "npm run build-md && npm run build-emoji && npm run build-fixtures && npm run build-support && npm run build-bundle && npm run build-mangle",
+    "build": "npm run build-md && npm run build-emoji && npm run build-support && npm run build-bundle && npm run build-mangle",
     "lint": "xo",
     "test-api": "node test",
     "test-coverage": "nyc --reporter lcov tape test.js",
