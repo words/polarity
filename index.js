@@ -1,6 +1,7 @@
 'use strict';
 
 var afinn = require('afinn-111');
+var has = require('has');
 var emoji = require('./data/emoji.json');
 
 module.exports = polarity;
@@ -8,7 +9,6 @@ polarity.inject = inject;
 polarity.polarities = {};
 
 var polarities = polarity.polarities;
-var has = Object.prototype.hasOwnProperty;
 
 inject(afinn);
 inject(emoji);
@@ -55,20 +55,17 @@ function inject(values) {
   var value;
 
   for (value in values) {
-    /* istanbul ignore else */
-    if (has.call(values, value)) {
-      polarities[value] = values[value];
-    }
+    polarities[value] = values[value];
   }
 }
 
 /* Get the polarity of a word. */
 function getPolarity(value, inject) {
-  if (has.call(polarities, value)) {
+  if (has(polarities, value)) {
     return polarities[value];
   }
 
-  if (inject && has.call(inject, value)) {
+  if (inject && has(inject, value)) {
     return inject[value];
   }
 
