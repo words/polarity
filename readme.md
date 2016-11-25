@@ -88,10 +88,6 @@ Insert custom values.
 
 Direct access to the internal values.
 
-## Supported words
-
-See [Support.md](Support.md).
-
 ## Benchmark
 
 On a MacBook Air, it detects the polarity of 142,300 tweets per second.
