@@ -33,7 +33,7 @@
     "browserify": "^13.1.1",
     "emoji-emotion": "^1.0.0",
     "esmangle": "^1.0.1",
-    "gemoji": "^2.0.1",
+    "gemoji": "^4.0.0",
     "nyc": "^10.0.0",
     "remark-cli": "^2.1.0",
     "remark-preset-wooorm": "^1.0.0",
