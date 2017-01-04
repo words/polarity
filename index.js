@@ -1,6 +1,6 @@
 'use strict';
 
-var afinn = require('afinn-111');
+var afinn = require('afinn-165');
 var has = require('has');
 var emoji = require('./emoji');
 

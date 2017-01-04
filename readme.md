@@ -1,6 +1,6 @@
 # polarity [![Build Status][travpolarity]][travis] [![Coverage Status][codecov-badge]][codecov]
 
-Detect the polarity of text, based on [**afinn-111**][afinn] and
+Detect the polarity of text, based on [**afinn-165**][afinn] and
 [**emoji-emotion**][emoji].
 
 ## Installation
@@ -105,7 +105,7 @@ Direct access to the internal values.
 
 [author]: http://wooorm.com
 
-[afinn]: https://github.com/wooorm/afinn-111
+[afinn]: https://github.com/wooorm/afinn-165
 
 [emoji]: https://github.com/wooorm/emoji-emotion
 
