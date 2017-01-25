@@ -30,7 +30,7 @@
     "has": "^1.0.1"
   },
   "devDependencies": {
-    "browserify": "^13.1.1",
+    "browserify": "^14.0.0",
     "emoji-emotion": "^1.0.0",
     "esmangle": "^1.0.1",
     "gemoji": "^4.0.0",
