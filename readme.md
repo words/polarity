@@ -1,7 +1,7 @@
 # polarity [![Build Status][travpolarity]][travis] [![Coverage Status][codecov-badge]][codecov]
 
-Detect the polarity of text, based on [**afinn-165**][afinn] and
-[**emoji-emotion**][emoji].
+Detect the polarity of text, based on [`afinn-165`][afinn] and
+[`emoji-emotion`][emoji].
 
 ## Installation
 
@@ -64,18 +64,18 @@ function tokenize(value) {
 
 ###### Parameters
 
-*   `words` (`Array.<string>`) — Words to parse;
-*   `inject` (`Object.<number>`, optional) — Custom valences for words.
+*   `words` (`Array.<string>`) — Words to parse
+*   `inject` (`Object.<number>`, optional) — Custom valences for words
 
 ###### Returns
 
 `Object`:
 
-*   `polarity` (`number`) — Calculated polarity of input;
-*   `positivity` (`number`) — Total positivity;
-*   `negativity` (`number`) — Total negativity;
-*   `positive` (`Array.<string>`) — All positive words;
-*   `negative` (`Array.<string>`) — All negative words.
+*   `polarity` (`number`) — Calculated polarity of input
+*   `positivity` (`number`) — Total positivity
+*   `negativity` (`number`) — Total negativity
+*   `positive` (`Array.<string>`) — All positive words
+*   `negative` (`Array.<string>`) — All negative words
 
 ### `polarity.inject(words)`
 
