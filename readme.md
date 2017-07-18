@@ -85,6 +85,17 @@ Insert custom values.
 
 Direct access to the internal values.
 
+## Related
+
+*   [`afinn-96`](https://github.com/wooorm/afinn-96)
+    — AFINN list from 2009, containing 1468 entries
+*   [`afinn-111`](https://github.com/wooorm/afinn-111)
+    — AFINN list from 2011, containing 2477 entries
+*   [`afinn-169`](https://github.com/wooorm/afinn-169)
+    — AFINN list from 2015, containing 3382 entries
+*   [`emoji-emotion`](https://github.com/wooorm/emoji-emotion)
+    — Like AFINN, but for emoji
+
 ## License
 
 [MIT][license] © [Titus Wormer][author]
