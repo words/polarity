@@ -102,8 +102,8 @@ test('polarity()', function (t) {
   t.deepEqual(
     polarity(['he', 'made', 'me', ':smile:']),
     {
-      polarity: 3,
-      positivity: 3,
+      polarity: 2,
+      positivity: 2,
       negativity: 0,
       positive: [':smile:'],
       negative: []
@@ -114,9 +114,9 @@ test('polarity()', function (t) {
   t.deepEqual(
     polarity(['he', 'made', 'me', '\ud83d\ude31']),
     {
-      polarity: -4,
+      polarity: -3,
       positivity: 0,
-      negativity: -4,
+      negativity: -3,
       positive: [],
       negative: ['\ud83d\ude31']
     },
