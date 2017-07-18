@@ -1,6 +1,6 @@
 {
   "name": "polarity",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "Detect the polarity (sentiment) of text",
   "license": "MIT",
   "keywords": [
