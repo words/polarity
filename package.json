@@ -26,8 +26,7 @@
     "emoji.json"
   ],
   "dependencies": {
-    "afinn-165": "^1.0.0",
-    "has": "^1.0.1"
+    "afinn-165": "^1.0.0"
   },
   "devDependencies": {
     "browserify": "^14.0.0",
