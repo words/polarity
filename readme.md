@@ -1,4 +1,4 @@
-# polarity [![Build Status][travpolarity]][travis] [![Coverage Status][codecov-badge]][codecov]
+# polarity [![Build Status][travis-badge]][travis] [![Coverage Status][codecov-badge]][codecov]
 
 Detect the polarity of text, based on [`afinn-165`][afinn] and
 [`emoji-emotion`][emoji].
@@ -87,13 +87,13 @@ Direct access to the internal values.
 
 ## Related
 
-*   [`afinn-96`](https://github.com/wooorm/afinn-96)
+*   [`afinn-96`](https://github.com/words/afinn-96)
     — AFINN list from 2009, containing 1468 entries
-*   [`afinn-111`](https://github.com/wooorm/afinn-111)
+*   [`afinn-111`](https://github.com/words/afinn-111)
     — AFINN list from 2011, containing 2477 entries
-*   [`afinn-169`](https://github.com/wooorm/afinn-169)
+*   [`afinn-169`](https://github.com/words/afinn-169)
     — AFINN list from 2015, containing 3382 entries
-*   [`emoji-emotion`](https://github.com/wooorm/emoji-emotion)
+*   [`emoji-emotion`](https://github.com/words/emoji-emotion)
     — Like AFINN, but for emoji
 
 ## License
@@ -102,13 +102,13 @@ Direct access to the internal values.
 
 <!-- Definitions -->
 
-[travpolarity]: https://img.shields.io/travis/wooorm/polarity.svg
+[travis-badge]: https://img.shields.io/travis/words/polarity.svg
 
-[travis]: https://travis-ci.org/wooorm/polarity
+[travis]: https://travis-ci.org/words/polarity
 
-[codecov-badge]: https://img.shields.io/codecov/c/github/wooorm/polarity.svg
+[codecov-badge]: https://img.shields.io/codecov/c/github/words/polarity.svg
 
-[codecov]: https://codecov.io/github/wooorm/polarity
+[codecov]: https://codecov.io/github/words/polarity
 
 [npm]: https://docs.npmjs.com/cli/install
 
@@ -116,8 +116,8 @@ Direct access to the internal values.
 
 [author]: http://wooorm.com
 
-[afinn]: https://github.com/wooorm/afinn-165
+[afinn]: https://github.com/words/afinn-165
 
-[emoji]: https://github.com/wooorm/emoji-emotion
+[emoji]: https://github.com/words/emoji-emotion
 
 [latin]: https://github.com/wooorm/parse-latin

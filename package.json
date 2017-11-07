@@ -15,8 +15,9 @@
     "emotion",
     "attitude"
   ],
-  "repository": "https://github.com/wooorm/polarity",
-  "bugs": "https://github.com/wooorm/polarity/issues",
+  "homepage": "https://words.github.io/polarity/",
+  "repository": "words/polarity",
+  "bugs": "https://github.com/words/polarity/issues",
   "author": "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)",
   "contributors": [
     "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)"
@@ -67,6 +68,8 @@
     ]
   },
   "remarkConfig": {
-    "plugins": ["preset-wooorm"]
+    "plugins": [
+      "preset-wooorm"
+    ]
   }
 }
