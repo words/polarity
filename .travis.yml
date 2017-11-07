@@ -1,7 +1,7 @@
 language: node_js
 node_js:
 - '4.0'
-- '8.0'
+- '9.0'
 after_script: bash <(curl -s https://codecov.io/bash)
 sudo: false
 deploy:
@@ -11,7 +11,7 @@ deploy:
       secure: e4QZw/v8DqIHAobum+cV0zs8KWJuVLffKnYNslenac1GcS41Gd7qWKktOyzkKWygLTHwvnMRbsi+MhZR1+McbpgXGPF4iIVnUUMmqqKz3/K2YTYWGA+vR92qnpAufU46G9i96xp0/m4A+IxGtCJ/1e8w54DOKA1PHEE/Obi8xuw=
     on:
       tags: true
-      node: '4.0'
+      node: '9.0'
   - provider: releases
     skip_cleanup: true
     api_key:
@@ -21,4 +21,4 @@ deploy:
       - "polarity.min.js"
     on:
       tags: true
-      node: '8.0'
+      node: '9.0'
