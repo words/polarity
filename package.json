@@ -32,7 +32,6 @@
   "devDependencies": {
     "browserify": "^16.0.0",
     "emoji-emotion": "^2.0.0",
-    "esmangle": "^1.0.1",
     "gemoji": "^4.0.0",
     "nyc": "^13.0.0",
     "prettier": "^1.14.2",
