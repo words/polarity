@@ -5,20 +5,13 @@ node_js:
 after_script: bash <(curl -s https://codecov.io/bash)
 sudo: false
 deploy:
-  - provider: npm
-    email: tituswormer@gmail.com
-    api_key:
-      secure: e4QZw/v8DqIHAobum+cV0zs8KWJuVLffKnYNslenac1GcS41Gd7qWKktOyzkKWygLTHwvnMRbsi+MhZR1+McbpgXGPF4iIVnUUMmqqKz3/K2YTYWGA+vR92qnpAufU46G9i96xp0/m4A+IxGtCJ/1e8w54DOKA1PHEE/Obi8xuw=
-    on:
-      tags: true
-      node: '9.0'
-  - provider: releases
-    skip_cleanup: true
-    api_key:
-      secure: JcMwhSn12FhxW5wcaSYj4SzLyr40bqhwD+GDKi724y1yiqL7U2hvkdSFHG+QMIN7w4qwsSWYIFQIcIolO9bki3MA+y4symYv0X9VolxjzPw2BJNXj2179JEUXIDQjm8yYOZetEVd7OTYDUSy8qI9qoyn1Rmni7AhWm0MGHIN0hM=
-    file:
-      - "polarity.js"
-      - "polarity.min.js"
-    on:
-      tags: true
-      node: '9.0'
+  provider: releases
+  skip_cleanup: true
+  api_key:
+    secure: JcMwhSn12FhxW5wcaSYj4SzLyr40bqhwD+GDKi724y1yiqL7U2hvkdSFHG+QMIN7w4qwsSWYIFQIcIolO9bki3MA+y4symYv0X9VolxjzPw2BJNXj2179JEUXIDQjm8yYOZetEVd7OTYDUSy8qI9qoyn1Rmni7AhWm0MGHIN0hM=
+  file:
+    - "polarity.js"
+    - "polarity.min.js"
+  on:
+    tags: true
+    node: '9.0'
