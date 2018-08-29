@@ -14,9 +14,9 @@ npm install polarity
 ## Usage
 
 ```js
-var polarity = require('polarity');
+var polarity = require('polarity')
 
-polarity(['some', 'positive', 'happy', 'cats']);
+polarity(['some', 'positive', 'happy', 'cats'])
 ```
 
 Yields:
@@ -32,7 +32,7 @@ Yields:
 ```
 
 ```js
-polarity(['darn', 'self-deluded', 'abandoned', 'dogs']);
+polarity(['darn', 'self-deluded', 'abandoned', 'dogs'])
 ```
 
 Yields:
@@ -58,7 +58,7 @@ Get a polarity result from given values, optionally with one time injections.
 
 ```js
 function tokenize(value) {
-  return value.toLowerCase().match(/\S+/g);
+  return value.toLowerCase().match(/\S+/g)
 }
 ```
 

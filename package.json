@@ -35,6 +35,7 @@
     "esmangle": "^1.0.1",
     "gemoji": "^4.0.0",
     "nyc": "^13.0.0",
+    "prettier": "^1.14.2",
     "remark-cli": "^5.0.0",
     "remark-preset-wooorm": "^4.0.0",
     "tape": "^4.0.0",
@@ -42,15 +43,14 @@
     "xo": "^0.22.0"
   },
   "scripts": {
-    "build-md": "remark . -qfo",
-    "build-emoji": "node build",
+    "generate": "node build",
+    "format": "remark . -qfo && prettier --write \"**/*.js\" && xo --fix",
     "build-bundle": "browserify . -s polarity > polarity.js",
     "build-mangle": "browserify . -s polarity -p tinyify > polarity.min.js",
-    "build": "npm run build-md && npm run build-emoji && npm run build-bundle && npm run build-mangle",
-    "lint": "xo",
+    "build": "npm run build-bundle && npm run build-mangle",
     "test-api": "node test",
     "test-coverage": "nyc --reporter lcov tape test/index.js",
-    "test": "npm run build && npm run lint && npm run test-api"
+    "test": "npm run generate && npm run format && npm run build && npm run test-api"
   },
   "nyc": {
     "check-coverage": true,
@@ -58,8 +58,16 @@
     "functions": 100,
     "branches": 100
   },
+  "prettier": {
+    "tabWidth": 2,
+    "useTabs": false,
+    "singleQuote": true,
+    "bracketSpacing": false,
+    "semi": false,
+    "trailingComma": "none"
+  },
   "xo": {
-    "space": true,
+    "prettier": true,
     "esnext": false,
     "rules": {
       "guard-for-in": "off"

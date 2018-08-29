@@ -1,12 +1,12 @@
-'use strict';
+'use strict'
 
-var fs = require('fs');
-var path = require('path');
-var test = require('tape');
-var polarity = require('..');
+var fs = require('fs')
+var path = require('path')
+var test = require('tape')
+var polarity = require('..')
 
-test('polarity()', function (t) {
-  t.equal(typeof polarity, 'function', 'should be a `function`');
+test('polarity()', function(t) {
+  t.equal(typeof polarity, 'function', 'should be a `function`')
 
   t.deepEqual(
     polarity(['cool']),
@@ -18,7 +18,7 @@ test('polarity()', function (t) {
       negative: []
     },
     'should return a result object'
-  );
+  )
 
   t.deepEqual(
     polarity(),
@@ -30,7 +30,7 @@ test('polarity()', function (t) {
       negative: []
     },
     'should return a result object when no value is given'
-  );
+  )
 
   t.deepEqual(
     polarity({
@@ -45,7 +45,7 @@ test('polarity()', function (t) {
       negative: ['hate']
     },
     'should return a result object when an array-like value is given'
-  );
+  )
 
   t.deepEqual(
     polarity(Infinity),
@@ -57,7 +57,7 @@ test('polarity()', function (t) {
       negative: []
     },
     'should return a result object when an array-like value is given'
-  );
+  )
 
   t.deepEqual(
     polarity(['hate', 'hate', 'cat', 'hate', 'hate'], {cat: 5}),
@@ -69,9 +69,9 @@ test('polarity()', function (t) {
       negative: ['hate', 'hate', 'hate', 'hate']
     },
     'should accept a temporary inject object'
-  );
+  )
 
-  polarity.inject({cat: 5});
+  polarity.inject({cat: 5})
 
   t.deepEqual(
     polarity(['hate', 'hate', 'cat', 'hate', 'hate']),
@@ -83,9 +83,9 @@ test('polarity()', function (t) {
       negative: ['hate', 'hate', 'hate', 'hate']
     },
     '`inject()`'
-  );
+  )
 
-  polarity.inject({cat: 0});
+  polarity.inject({cat: 0})
 
   t.deepEqual(
     polarity(['toString', 'prototype', 'constructor']),
@@ -97,7 +97,7 @@ test('polarity()', function (t) {
       negative: []
     },
     'should not throw when reaching for prototypal functions on `polarities`'
-  );
+  )
 
   t.deepEqual(
     polarity(['he', 'made', 'me', ':smile:']),
@@ -109,59 +109,53 @@ test('polarity()', function (t) {
       negative: []
     },
     'should accept gemoji'
-  );
+  )
 
   t.deepEqual(
-    polarity(['he', 'made', 'me', '\ud83d\ude31']),
+    polarity(['he', 'made', 'me', '\uD83D\uDE31']),
     {
       polarity: -3,
       positivity: 0,
       negativity: -3,
       positive: [],
-      negative: ['\ud83d\ude31']
+      negative: ['\uD83D\uDE31']
     },
     'should accept emoji'
-  );
+  )
 
-  t.end();
-});
+  t.end()
+})
 
-test('algorithm', function (t) {
-  var root = path.join('test', 'fixtures');
+test('algorithm', function(t) {
+  var root = path.join('test', 'fixtures')
 
-  fs
-    .readdirSync(root)
-    .forEach(function (filename) {
-      if (path.extname(filename) !== '.txt') {
-        return;
+  fs.readdirSync(root).forEach(function(filename) {
+    if (path.extname(filename) !== '.txt') {
+      return
+    }
+
+    var doc = fs.readFileSync(path.join(root, filename), 'utf8').trim()
+    var type = path.basename(filename, '.txt').split('-')[1]
+
+    t.doesNotThrow(function() {
+      var result = polarity(tokenize(doc))
+      var positive = type === 'positive'
+
+      if (
+        (result.polarity < 1 && positive) ||
+        (result.polarity > 1 && !positive)
+      ) {
+        throw new Error(
+          'Expected ' + positive + ', but got `' + result.polarity + '`'
+        )
       }
+    }, type + ': `' + doc + '`')
+  })
 
-      var doc = fs.readFileSync(path.join(root, filename), 'utf8').trim();
-      var type = path.basename(filename, '.txt').split('-')[1];
-
-      t.doesNotThrow(
-        function () {
-          var result = polarity(tokenize(doc));
-          var positive = type === 'positive';
-
-          if (
-            (result.polarity < 1 && positive) ||
-            (result.polarity > 1 && !positive)
-          ) {
-            throw new Error(
-              'Expected ' + positive + ', but got `' +
-              result.polarity + '`'
-            );
-          }
-        },
-        type + ': `' + doc + '`'
-      );
-    });
-
-  t.end();
-});
+  t.end()
+})
 
 /* Simple word tokenizer. */
 function tokenize(value) {
-  return value.toLowerCase().match(/\S+/g);
+  return value.toLowerCase().match(/\S+/g)
 }

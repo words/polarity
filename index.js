@@ -1,44 +1,44 @@
-'use strict';
+'use strict'
 
-var afinn = require('afinn-165');
-var emoji = require('./emoji');
+var afinn = require('afinn-165')
+var emoji = require('./emoji')
 
-module.exports = polarity;
-polarity.inject = inject;
-polarity.polarities = {};
+module.exports = polarity
+polarity.inject = inject
+polarity.polarities = {}
 
-var polarities = polarity.polarities;
+var polarities = polarity.polarities
 
-var own = {}.hasOwnProperty;
+var own = {}.hasOwnProperty
 
-inject(afinn);
-inject(emoji);
+inject(afinn)
+inject(emoji)
 
 /* Define `polarity` */
 function polarity(values, inject) {
-  var words = values || [];
-  var index = words.length || 1;
-  var positivity = 0;
-  var negativity = 0;
-  var positive = [];
-  var negative = [];
-  var value;
-  var weight;
+  var words = values || []
+  var index = words.length || 1
+  var positivity = 0
+  var negativity = 0
+  var positive = []
+  var negative = []
+  var value
+  var weight
 
   while (index--) {
-    value = words[index];
-    weight = getPolarity(value, inject);
+    value = words[index]
+    weight = getPolarity(value, inject)
 
     if (!weight) {
-      continue;
+      continue
     }
 
     if (weight > 0) {
-      positive.push(value);
-      positivity += weight;
+      positive.push(value)
+      positivity += weight
     } else {
-      negative.push(value);
-      negativity += weight;
+      negative.push(value)
+      negativity += weight
     }
   }
 
@@ -48,27 +48,27 @@ function polarity(values, inject) {
     negativity: negativity,
     positive: positive,
     negative: negative
-  };
+  }
 }
 
 /* Inject values on the `polarities` object. */
 function inject(values) {
-  var value;
+  var value
 
   for (value in values) {
-    polarities[value] = values[value];
+    polarities[value] = values[value]
   }
 }
 
 /* Get the polarity of a word. */
 function getPolarity(value, inject) {
   if (own.call(polarities, value)) {
-    return polarities[value];
+    return polarities[value]
   }
 
   if (inject && own.call(inject, value)) {
-    return inject[value];
+    return inject[value]
   }
 
-  return 0;
+  return 0
 }
