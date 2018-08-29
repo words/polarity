@@ -14,4 +14,3 @@ deploy:
     - "polarity.min.js"
   on:
     tags: true
-    node: '9.0'
