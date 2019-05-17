@@ -14,7 +14,6 @@ var own = {}.hasOwnProperty
 inject(afinn)
 inject(emoji)
 
-/* Define `polarity` */
 function polarity(values, inject) {
   var words = values || []
   var index = words.length || 1
@@ -51,7 +50,7 @@ function polarity(values, inject) {
   }
 }
 
-/* Inject values on the `polarities` object. */
+// Inject values on the `polarities` object.
 function inject(values) {
   var value
 
@@ -60,7 +59,7 @@ function inject(values) {
   }
 }
 
-/* Get the polarity of a word. */
+// Get the polarity of a word.
 function getPolarity(value, inject) {
   if (own.call(polarities, value)) {
     return polarities[value]

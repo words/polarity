@@ -155,7 +155,7 @@ test('algorithm', function(t) {
   t.end()
 })
 
-/* Simple word tokenizer. */
+// Simple word tokenizer.
 function tokenize(value) {
   return value.toLowerCase().match(/\S+/g)
 }
