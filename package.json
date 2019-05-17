@@ -18,9 +18,9 @@
   "homepage": "https://words.github.io/polarity/",
   "repository": "words/polarity",
   "bugs": "https://github.com/words/polarity/issues",
-  "author": "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)",
+  "author": "Titus Wormer <tituswormer@gmail.com> (https://wooorm.com)",
   "contributors": [
-    "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)"
+    "Titus Wormer <tituswormer@gmail.com> (https://wooorm.com)"
   ],
   "files": [
     "index.js",

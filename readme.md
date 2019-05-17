@@ -127,7 +127,7 @@ Direct access to the internal values.
 
 [license]: license
 
-[author]: http://wooorm.com
+[author]: https://wooorm.com
 
 [afinn]: https://github.com/words/afinn-165
 
