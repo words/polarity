@@ -8,7 +8,7 @@ deploy:
   provider: releases
   skip_cleanup: true
   api_key:
-    secure: JcMwhSn12FhxW5wcaSYj4SzLyr40bqhwD+GDKi724y1yiqL7U2hvkdSFHG+QMIN7w4qwsSWYIFQIcIolO9bki3MA+y4symYv0X9VolxjzPw2BJNXj2179JEUXIDQjm8yYOZetEVd7OTYDUSy8qI9qoyn1Rmni7AhWm0MGHIN0hM=
+    secure: OD2Kg9UNm+hEW9uhzeb2HtJMAdWUH0zKfcNd+yqJ9Ung1B/41RfdQ8Y/rw2NxcCG322V7dX3cIunzLV6pjazigpGnvwx/0eDhtEgn++9pIyK0aICzbeLAXze0XFoH57U2O5uGp7DroKc9UXPqVM3XKfbIrpseZY1yW5r15cUaXI=
   file:
     - 'polarity.js'
     - 'polarity.min.js'
