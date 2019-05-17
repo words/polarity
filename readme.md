@@ -58,8 +58,9 @@ Yields:
 
 Get a polarity result from given values, optionally with one time injections.
 
-**polarity** does not tokenise values.  There are better tokenisers around
-([**parse-latin**][latin]).  However, the following will work pretty good:
+**polarity** does not tokenise values.
+There are better tokenisers around ([**parse-latin**][latin]).
+However, the following will work pretty good:
 
 ```js
 function tokenize(value) {
