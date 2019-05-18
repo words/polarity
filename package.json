@@ -49,7 +49,7 @@
     "build": "npm run build-bundle && npm run build-mangle",
     "test-api": "node test",
     "test-coverage": "nyc --reporter lcov tape test/index.js",
-    "test": "npm run generate && npm run format && npm run build && npm run test-api"
+    "test": "npm run generate && npm run format && npm run build && npm run test-coverage"
   },
   "nyc": {
     "check-coverage": true,
