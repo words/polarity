@@ -1,0 +1,98 @@
+body {
+  font-family: system-ui;
+  margin: 3em auto;
+  max-width: 30em;
+}
+
+textarea {
+  display: block;
+  width: 100%;
+  margin: 1em 0;
+}
+
+/* Neutral */
+div {
+  background-color: rgba(255, 255, 0, 0.05);
+}
+
+/* Anything above 9: */
+[data-valence='positive'] {
+  background-color: rgba(0, 255, 0, 0.5);
+}
+
+[data-polarity='1'] {
+  background-color: rgba(0, 255, 0, 0.05);
+}
+
+[data-polarity='2'] {
+  background-color: rgba(0, 255, 0, 0.1);
+}
+
+[data-polarity='3'] {
+  background-color: rgba(0, 255, 0, 0.15);
+}
+
+[data-polarity='4'] {
+  background-color: rgba(0, 255, 0, 0.2);
+}
+
+[data-polarity='5'] {
+  background-color: rgba(0, 255, 0, 0.25);
+}
+
+[data-polarity='6'] {
+  background-color: rgba(0, 255, 0, 0.3);
+}
+
+[data-polarity='7'] {
+  background-color: rgba(0, 255, 0, 0.35);
+}
+
+[data-polarity='8'] {
+  background-color: rgba(0, 255, 0, 0.4);
+}
+
+[data-polarity='9'] {
+  background-color: rgba(0, 255, 0, 0.45);
+}
+
+/* Anything below -9: */
+[data-valence='negative'] {
+  background-color: rgba(255, 0, 0, 0.5);
+}
+
+[data-polarity='-1'] {
+  background-color: rgba(255, 0, 0, 0.05);
+}
+
+[data-polarity='-2'] {
+  background-color: rgba(255, 0, 0, 0.1);
+}
+
+[data-polarity='-3'] {
+  background-color: rgba(255, 0, 0, 0.15);
+}
+
+[data-polarity='-4'] {
+  background-color: rgba(255, 0, 0, 0.2);
+}
+
+[data-polarity='-5'] {
+  background-color: rgba(255, 0, 0, 0.25);
+}
+
+[data-polarity='-6'] {
+  background-color: rgba(255, 0, 0, 0.3);
+}
+
+[data-polarity='-7'] {
+  background-color: rgba(255, 0, 0, 0.35);
+}
+
+[data-polarity='-8'] {
+  background-color: rgba(255, 0, 0, 0.4);
+}
+
+[data-polarity='-9'] {
+  background-color: rgba(255, 0, 0, 0.45);
+}
