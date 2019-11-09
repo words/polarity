@@ -25,7 +25,7 @@ function oninputchange() {
   var result = polarity(words)
   var valence
 
-  $output.setAttribute('data-polarity', result.polarity)
+  $output.dataset.polarity = result.polarity
 
   if (result.polarity > 0) {
     valence = 'positive'
@@ -35,7 +35,7 @@ function oninputchange() {
     valence = 'neutral'
   }
 
-  $output.setAttribute('data-valence', valence)
+  $output.dataset.valence = valence
 
   $output.innerHTML = [
     'Total polarity: ' + result.polarity,
