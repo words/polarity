@@ -40,7 +40,7 @@ function oninputchange() {
   $output.innerHTML = [
     'Total polarity: ' + result.polarity,
     'Total positivity: ' + result.positivity,
-    'Total negativity: ' + result.negativity,
+    'Total negativity: ' + result.negativity * -1,
     'Positive phrases: ' + result.positive.join('; '),
     'Negative phrases: ' + result.negative.join('; ')
   ].join('<br>')
