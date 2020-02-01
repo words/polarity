@@ -17,6 +17,10 @@
   ],
   "homepage": "https://words.github.io/polarity/",
   "repository": "words/polarity",
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/wooorm"
+  },
   "bugs": "https://github.com/words/polarity/issues",
   "author": "Titus Wormer <tituswormer@gmail.com> (https://wooorm.com)",
   "contributors": [
