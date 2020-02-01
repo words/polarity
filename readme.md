@@ -8,15 +8,15 @@
 Detect the polarity of text, based on [`afinn-165`][afinn] and
 [`emoji-emotion`][emoji].
 
-## Installation
+## Install
 
 [npm][]:
 
-```bash
+```sh
 npm install polarity
 ```
 
-## Usage
+## Use
 
 ```js
 var polarity = require('polarity')
@@ -58,8 +58,8 @@ Yields:
 
 Get a polarity result from given values, optionally with one time injections.
 
-**polarity** does not tokenise values.
-There are better tokenisers around ([**parse-latin**][latin]).
+**polarity** does not tokenize values.
+There are better tokenizers around ([**parse-latin**][latin]).
 However, the following will work pretty good:
 
 ```js
