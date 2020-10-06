@@ -6,7 +6,7 @@ var emojiToName = require('gemoji/emoji-to-name')
 
 var data = {}
 
-emotion.forEach(function(info) {
+emotion.forEach(function (info) {
   data[info.emoji] = info.polarity
   data[':' + emojiToName[info.emoji] + ':'] = info.polarity
 })

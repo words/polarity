@@ -5,7 +5,7 @@ var path = require('path')
 var test = require('tape')
 var polarity = require('..')
 
-test('polarity()', function(t) {
+test('polarity()', function (t) {
   t.equal(typeof polarity, 'function', 'should be a `function`')
 
   t.deepEqual(
@@ -126,10 +126,10 @@ test('polarity()', function(t) {
   t.end()
 })
 
-test('algorithm', function(t) {
+test('algorithm', function (t) {
   var root = path.join('test', 'fixtures')
 
-  fs.readdirSync(root).forEach(function(filename) {
+  fs.readdirSync(root).forEach(function (filename) {
     if (path.extname(filename) !== '.txt') {
       return
     }
@@ -137,7 +137,7 @@ test('algorithm', function(t) {
     var doc = fs.readFileSync(path.join(root, filename), 'utf8').trim()
     var type = path.basename(filename, '.txt').split('-')[1]
 
-    t.doesNotThrow(function() {
+    t.doesNotThrow(function () {
       var result = polarity(tokenize(doc))
       var positive = type === 'positive'
 
