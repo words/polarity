@@ -26,17 +26,20 @@
   "contributors": [
     "Titus Wormer <tituswormer@gmail.com> (https://wooorm.com)"
   ],
+  "sideEffects": false,
+  "type": "module",
+  "main": "index.js",
   "files": [
     "index.js",
-    "emoji.json"
+    "emoji.js"
   ],
   "dependencies": {
-    "afinn-165": "^1.0.0"
+    "afinn-165": "^2.0.0"
   },
   "devDependencies": {
-    "browserify": "^17.0.0",
-    "emoji-emotion": "^2.0.0",
-    "gemoji": "^6.0.0",
+    "c8": "^7.0.0",
+    "emoji-emotion": "^3.0.0",
+    "gemoji": "^7.0.0",
     "nyc": "^15.0.0",
     "prettier": "^2.0.0",
     "remark-cli": "^9.0.0",
@@ -48,18 +51,9 @@
   "scripts": {
     "generate": "node build",
     "format": "remark . -qfo && prettier . -w --loglevel warn && xo --fix",
-    "build-bundle": "browserify . -s polarity > polarity.js",
-    "build-mangle": "browserify . -s polarity -p tinyify > polarity.min.js",
-    "build": "npm run build-bundle && npm run build-mangle",
-    "test-api": "node test",
-    "test-coverage": "nyc --reporter lcov tape test/index.js",
-    "test": "npm run generate && npm run format && npm run build && npm run test-coverage"
-  },
-  "nyc": {
-    "check-coverage": true,
-    "lines": 100,
-    "functions": 100,
-    "branches": 100
+    "test-api": "node test/index.js",
+    "test-coverage": "c8 --check-coverage --branches 100 --functions 100 --lines 100 --statements 100 --reporter lcov node test/index.js",
+    "test": "npm run generate && npm run format && npm run test-coverage"
   },
   "prettier": {
     "tabWidth": 2,
@@ -71,14 +65,11 @@
   },
   "xo": {
     "prettier": true,
-    "esnext": false,
     "rules": {
-      "unicorn/explicit-length-check": "off",
-      "guard-for-in": "off"
-    },
-    "ignores": [
-      "polarity.js"
-    ]
+      "import/no-mutable-exports": "off",
+      "no-var": "off",
+      "prefer-arrow-callback": "off"
+    }
   },
   "remarkConfig": {
     "plugins": [

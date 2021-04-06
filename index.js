@@ -1,22 +1,16 @@
-'use strict'
+import {afinn165} from 'afinn-165'
+import {emoji} from './emoji.js'
 
-var afinn = require('afinn-165')
-var emoji = require('./emoji')
-
-module.exports = polarity
-polarity.inject = inject
-polarity.polarities = {}
-
-var polarities = polarity.polarities
+export var polarities = {}
 
 var own = {}.hasOwnProperty
 
-inject(afinn)
+inject(afinn165)
 inject(emoji)
 
-function polarity(values, inject) {
+export function polarity(values, inject) {
   var words = values || []
-  var index = words.length || 1
+  var index = words.length === 0 ? 1 : words.length
   var positivity = 0
   var negativity = 0
   var positive = []
@@ -43,19 +37,21 @@ function polarity(values, inject) {
 
   return {
     polarity: positivity + negativity,
-    positivity: positivity,
-    negativity: negativity,
-    positive: positive,
-    negative: negative
+    positivity,
+    negativity,
+    positive,
+    negative
   }
 }
 
 // Inject values on the `polarities` object.
-function inject(values) {
+export function inject(values) {
   var value
 
   for (value in values) {
-    polarities[value] = values[value]
+    if (own.call(values, value)) {
+      polarities[value] = values[value]
+    }
   }
 }
 

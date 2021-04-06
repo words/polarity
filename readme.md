@@ -10,6 +10,9 @@ Detect the polarity of text, based on [`afinn-165`][afinn] and
 
 ## Install
 
+This package is ESM only: Node 12+ is needed to use it and it must be `import`ed
+instead of `require`d.
+
 [npm][]:
 
 ```sh
@@ -19,7 +22,7 @@ npm install polarity
 ## Use
 
 ```js
-var polarity = require('polarity')
+import {polarity} from 'polarity'
 
 polarity(['some', 'positive', 'happy', 'cats'])
 ```
@@ -54,6 +57,10 @@ Yields:
 
 ## API
 
+This package exports the following identifiers: `polarity`, `inject`,
+`polarities`.
+There is no default export.
+
 ### `polarity(words[, inject])`
 
 Get a polarity result from given values, optionally with one time injections.
@@ -83,11 +90,11 @@ function tokenize(value) {
 *   `positive` (`Array.<string>`) — All positive words
 *   `negative` (`Array.<string>`) — All negative words
 
-### `polarity.inject(words)`
+### `inject(words)`
 
 Insert custom values.
 
-### `polarity.polarities`
+### `polarities`
 
 Direct access to the internal values.
 

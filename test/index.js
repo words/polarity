@@ -1,9 +1,7 @@
-'use strict'
-
-var fs = require('fs')
-var path = require('path')
-var test = require('tape')
-var polarity = require('..')
+import fs from 'fs'
+import path from 'path'
+import test from 'tape'
+import {polarity, inject} from '../index.js'
 
 test('polarity()', function (t) {
   t.equal(typeof polarity, 'function', 'should be a `function`')
@@ -71,7 +69,7 @@ test('polarity()', function (t) {
     'should accept a temporary inject object'
   )
 
-  polarity.inject({cat: 5})
+  inject({cat: 5})
 
   t.deepEqual(
     polarity(['hate', 'hate', 'cat', 'hate', 'hate']),
@@ -85,7 +83,7 @@ test('polarity()', function (t) {
     '`inject()`'
   )
 
-  polarity.inject({cat: 0})
+  inject({cat: 0})
 
   t.deepEqual(
     polarity(['toString', 'prototype', 'constructor']),

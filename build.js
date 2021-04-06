@@ -1,15 +1,17 @@
-'use strict'
-
-var fs = require('fs')
-var emotion = require('emoji-emotion')
-var emojiToName = require('gemoji/emoji-to-name')
+import fs from 'fs'
+import {emojiEmotion} from 'emoji-emotion'
+import {emojiToName} from 'gemoji'
 
 var data = {}
 var index = -1
 
-while (++index < emotion.length) {
-  data[emotion[index].emoji] = emotion[index].polarity
-  data[':' + emojiToName[emotion[index].emoji] + ':'] = emotion[index].polarity
+while (++index < emojiEmotion.length) {
+  data[emojiEmotion[index].emoji] = emojiEmotion[index].polarity
+  data[':' + emojiToName[emojiEmotion[index].emoji] + ':'] =
+    emojiEmotion[index].polarity
 }
 
-fs.writeFileSync('emoji.json', JSON.stringify(data, null, 2) + '\n')
+fs.writeFileSync(
+  'emoji.js',
+  'export var emoji = ' + JSON.stringify(data, null, 2) + '\n'
+)
