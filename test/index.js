@@ -48,7 +48,7 @@ test('polarity()', function (t) {
   )
 
   t.deepEqual(
-    polarity(Infinity),
+    polarity(Number.POSITIVE_INFINITY),
     {
       polarity: 0,
       positivity: 0,
@@ -128,14 +128,16 @@ test('polarity()', function (t) {
 
 test('algorithm', function (t) {
   var root = path.join('test', 'fixtures')
+  var files = fs.readdirSync(root)
+  var index = -1
 
-  fs.readdirSync(root).forEach(function (filename) {
-    if (path.extname(filename) !== '.txt') {
-      return
+  while (++index < files.length) {
+    if (path.extname(files[index]) !== '.txt') {
+      continue
     }
 
-    var doc = fs.readFileSync(path.join(root, filename), 'utf8').trim()
-    var type = path.basename(filename, '.txt').split('-')[1]
+    var doc = fs.readFileSync(path.join(root, files[index]), 'utf8').trim()
+    var type = path.basename(files[index], '.txt').split('-')[1]
 
     t.doesNotThrow(function () {
       var result = polarity(tokenize(doc))
@@ -150,7 +152,7 @@ test('algorithm', function (t) {
         )
       }
     }, type + ': `' + doc + '`')
-  })
+  }
 
   t.end()
 })
