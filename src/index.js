@@ -1,29 +1,27 @@
-'use strict'
-
 /* eslint-env browser */
 
-var polarity = require('polarity')
-var English = require('parse-english')
-var emoji = require('nlcst-emoji-modifier')
-var toString = require('nlcst-to-string')
+import {polarity} from 'polarity'
+import {ParseEnglish} from 'parse-english'
+import emoji from 'nlcst-emoji-modifier'
+import toString from 'nlcst-to-string'
 
-var english = new English()
+const english = new ParseEnglish()
 english.useFirst('tokenizeSentence', emoji)
 
-var $input = document.querySelector('textarea')
-var $output = document.querySelector('div')
+const $input = document.querySelector('textarea')
+const $output = document.querySelector('div')
 
 $input.addEventListener('input', oninputchange)
 
 oninputchange()
 
 function oninputchange() {
-  var words = english
+  const words = english
     .tokenizeSentence($input.value)
     .children.map((d) => toString(d))
     .map((d) => d.toLowerCase())
-  var result = polarity(words)
-  var valence
+  const result = polarity(words)
+  let valence
 
   $output.dataset.polarity = result.polarity
 
