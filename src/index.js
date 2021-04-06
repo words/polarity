@@ -20,8 +20,8 @@ oninputchange()
 function oninputchange() {
   var words = english
     .tokenizeSentence($input.value)
-    .children.map(toString)
-    .map(lower)
+    .children.map((d) => toString(d))
+    .map((d) => d.toLowerCase())
   var result = polarity(words)
   var valence
 
@@ -44,8 +44,4 @@ function oninputchange() {
     'Positive phrases: ' + result.positive.join('; '),
     'Negative phrases: ' + result.negative.join('; ')
   ].join('<br>')
-}
-
-function lower(value) {
-  return value.toLowerCase()
 }
