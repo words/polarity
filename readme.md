@@ -108,9 +108,9 @@ Direct access to the internal values.
 
 <!-- Definitions -->
 
-[build-badge]: https://img.shields.io/travis/words/polarity.svg
+[build-badge]: https://github.com/words/polarity/workflows/main/badge.svg
 
-[build]: https://travis-ci.org/words/polarity
+[build]: https://github.com/words/polarity/actions
 
 [coverage-badge]: https://img.shields.io/codecov/c/github/words/polarity.svg
 
