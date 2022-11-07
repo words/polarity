@@ -10,12 +10,22 @@
  */
 
 import {afinn165} from 'afinn-165'
-import {emoji} from './emoji.js'
+import {emojiEmotion} from 'emoji-emotion'
 
 /** @type {Record<string, number>} */
 export const polarities = {}
 
 const own = {}.hasOwnProperty
+
+/** @type {Record<string, number>} */
+const emoji = {}
+let index = 0
+
+while (++index < emojiEmotion.length) {
+  const info = emojiEmotion[index]
+  polarities[info.emoji] = info.polarity
+  polarities[':' + info.name + ':'] = info.polarity
+}
 
 inject(afinn165)
 inject(emoji)
