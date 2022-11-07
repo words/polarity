@@ -2,8 +2,8 @@ import fs from 'node:fs'
 import {emojiEmotion} from 'emoji-emotion'
 import {emojiToName} from 'gemoji'
 
-var data = {}
-var index = -1
+const data = {}
+let index = -1
 
 while (++index < emojiEmotion.length) {
   data[emojiEmotion[index].emoji] = emojiEmotion[index].polarity
@@ -13,5 +13,5 @@ while (++index < emojiEmotion.length) {
 
 fs.writeFileSync(
   'emoji.js',
-  'export var emoji = ' + JSON.stringify(data, null, 2) + '\n'
+  'export const emoji = ' + JSON.stringify(data, null, 2) + '\n'
 )

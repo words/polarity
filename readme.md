@@ -77,8 +77,8 @@ function tokenize(value) {
 
 ###### Parameters
 
-*   `words` (`Array.<string>`) — Words to parse
-*   `inject` (`Object.<number>`, optional) — Custom valences for words
+*   `words` (`Array<string>`) — Words to parse
+*   `inject` (`Record<string, number>`, optional) — Custom valences for words
 
 ###### Returns
 
@@ -87,8 +87,8 @@ function tokenize(value) {
 *   `polarity` (`number`) — Calculated polarity of input
 *   `positivity` (`number`) — Total positivity
 *   `negativity` (`number`) — Total negativity
-*   `positive` (`Array.<string>`) — All positive words
-*   `negative` (`Array.<string>`) — All negative words
+*   `positive` (`Array<string>`) — All positive words
+*   `negative` (`Array<string>`) — All negative words
 
 ### `inject(words)`
 

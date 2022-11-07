@@ -3,18 +3,19 @@
  * @property {number} polarity
  * @property {number} positivity
  * @property {number} negativity
- * @property {Array.<string>} positive
- * @property {Array.<string>} negative
+ * @property {Array<string>} positive
+ * @property {Array<string>} negative
  *
- * @typedef {Object.<string, number>} Inject
+ * @typedef {Record<string, number>} Inject
  */
 
 import {afinn165} from 'afinn-165'
 import {emoji} from './emoji.js'
 
-export var polarities = {}
+/** @type {Record<string, number>} */
+export const polarities = {}
 
-var own = {}.hasOwnProperty
+const own = {}.hasOwnProperty
 
 inject(afinn165)
 inject(emoji)
@@ -22,27 +23,23 @@ inject(emoji)
 /**
  * Get a polarity result from given values, optionally with one time injections.
  *
- * @param {Array.<string>} values
- * @param {Inject} inject
+ * @param {Array<string>} values
+ * @param {Inject} [inject]
  * @returns {Polarity}
  */
 export function polarity(values, inject) {
-  var words = values || []
-  var index = words.length === 0 ? 1 : words.length
-  var positivity = 0
-  var negativity = 0
-  /** @type {Array.<string>} */
-  var positive = []
-  /** @type {Array.<string>} */
-  var negative = []
-  /** @type {string} */
-  var value
-  /** @type {number} */
-  var weight
+  const words = values || []
+  let index = words.length === 0 ? 1 : words.length
+  let positivity = 0
+  let negativity = 0
+  /** @type {Array<string>} */
+  const positive = []
+  /** @type {Array<string>} */
+  const negative = []
 
   while (index--) {
-    value = words[index]
-    weight = getPolarity(value, inject)
+    const value = words[index]
+    const weight = getPolarity(value, inject)
 
     if (!weight) {
       continue
@@ -73,7 +70,7 @@ export function polarity(values, inject) {
  */
 export function inject(values) {
   /** @type {string} */
-  var value
+  let value
 
   for (value in values) {
     if (own.call(values, value)) {
@@ -87,6 +84,7 @@ export function inject(values) {
  *
  * @param {string} value
  * @param {Inject} inject
+ * @returns {number}
  */
 function getPolarity(value, inject) {
   if (own.call(polarities, value)) {

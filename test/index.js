@@ -19,6 +19,7 @@ test('polarity()', function (t) {
   )
 
   t.deepEqual(
+    // @ts-expect-error: missing.
     polarity(),
     {
       polarity: 0,
@@ -31,6 +32,7 @@ test('polarity()', function (t) {
   )
 
   t.deepEqual(
+    // @ts-expect-error: array-like
     polarity({
       length: 1,
       0: 'hate'
@@ -46,6 +48,7 @@ test('polarity()', function (t) {
   )
 
   t.deepEqual(
+    // @ts-expect-error: invalid
     polarity(Number.POSITIVE_INFINITY),
     {
       polarity: 0,
@@ -54,7 +57,7 @@ test('polarity()', function (t) {
       positive: [],
       negative: []
     },
-    'should return a result object when an array-like value is given'
+    'should return a result object when an invalid value is given'
   )
 
   t.deepEqual(
@@ -125,21 +128,21 @@ test('polarity()', function (t) {
 })
 
 test('algorithm', function (t) {
-  var root = path.join('test', 'fixtures')
-  var files = fs.readdirSync(root)
-  var index = -1
+  const root = path.join('test', 'fixtures')
+  const files = fs.readdirSync(root)
+  let index = -1
 
   while (++index < files.length) {
     if (path.extname(files[index]) !== '.txt') {
       continue
     }
 
-    var doc = fs.readFileSync(path.join(root, files[index]), 'utf8').trim()
-    var type = path.basename(files[index], '.txt').split('-')[1]
+    const doc = fs.readFileSync(path.join(root, files[index]), 'utf8').trim()
+    const type = path.basename(files[index], '.txt').split('-')[1]
 
     t.doesNotThrow(function () {
-      var result = polarity(tokenize(doc))
-      var positive = type === 'positive'
+      const result = polarity(tokenize(doc))
+      const positive = type === 'positive'
 
       if (
         (result.polarity < 1 && positive) ||

@@ -1,4 +1,4 @@
-export var emoji = {
+export const emoji = {
   '💯': 3,
   ':100:': 3,
   '😠': -3,
