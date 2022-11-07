@@ -1,12 +1,13 @@
-import fs from 'node:fs'
+import assert from 'node:assert/strict'
+import fs from 'node:fs/promises'
 import path from 'node:path'
-import test from 'tape'
+import test from 'node:test'
 import {polarity, inject} from '../index.js'
 
-test('polarity()', function (t) {
-  t.equal(typeof polarity, 'function', 'should be a `function`')
+test('polarity()', function () {
+  assert.equal(typeof polarity, 'function', 'should be a `function`')
 
-  t.deepEqual(
+  assert.deepEqual(
     polarity(['cool']),
     {
       polarity: 1,
@@ -18,7 +19,7 @@ test('polarity()', function (t) {
     'should return a result object'
   )
 
-  t.deepEqual(
+  assert.deepEqual(
     // @ts-expect-error: missing.
     polarity(),
     {
@@ -31,7 +32,7 @@ test('polarity()', function (t) {
     'should return a result object when no value is given'
   )
 
-  t.deepEqual(
+  assert.deepEqual(
     // @ts-expect-error: array-like
     polarity({
       length: 1,
@@ -47,7 +48,7 @@ test('polarity()', function (t) {
     'should return a result object when an array-like value is given'
   )
 
-  t.deepEqual(
+  assert.deepEqual(
     // @ts-expect-error: invalid
     polarity(Number.POSITIVE_INFINITY),
     {
@@ -60,7 +61,7 @@ test('polarity()', function (t) {
     'should return a result object when an invalid value is given'
   )
 
-  t.deepEqual(
+  assert.deepEqual(
     polarity(['hate', 'hate', 'cat', 'hate', 'hate'], {cat: 5}),
     {
       polarity: -7,
@@ -74,7 +75,7 @@ test('polarity()', function (t) {
 
   inject({cat: 5})
 
-  t.deepEqual(
+  assert.deepEqual(
     polarity(['hate', 'hate', 'cat', 'hate', 'hate']),
     {
       polarity: -7,
@@ -88,7 +89,7 @@ test('polarity()', function (t) {
 
   inject({cat: 0})
 
-  t.deepEqual(
+  assert.deepEqual(
     polarity(['toString', 'prototype', 'constructor']),
     {
       polarity: 0,
@@ -100,7 +101,7 @@ test('polarity()', function (t) {
     'should not throw when reaching for prototypal functions on `polarities`'
   )
 
-  t.deepEqual(
+  assert.deepEqual(
     polarity(['he', 'made', 'me', ':smile:']),
     {
       polarity: 2,
@@ -112,7 +113,7 @@ test('polarity()', function (t) {
     'should accept gemoji'
   )
 
-  t.deepEqual(
+  assert.deepEqual(
     polarity(['he', 'made', 'me', '\uD83D\uDE31']),
     {
       polarity: -3,
@@ -123,24 +124,25 @@ test('polarity()', function (t) {
     },
     'should accept emoji'
   )
-
-  t.end()
 })
 
-test('algorithm', function (t) {
-  const root = path.join('test', 'fixtures')
-  const files = fs.readdirSync(root)
+test('algorithm', async function () {
+  const rootUrl = new URL('fixtures/', import.meta.url)
+  const files = await fs.readdir(rootUrl)
   let index = -1
 
+  /* eslint-disable no-await-in-loop */
   while (++index < files.length) {
     if (path.extname(files[index]) !== '.txt') {
       continue
     }
 
-    const doc = fs.readFileSync(path.join(root, files[index]), 'utf8').trim()
-    const type = path.basename(files[index], '.txt').split('-')[1]
+    const stem = path.basename(files[index], '.txt')
+    const fixtureUrl = new URL(files[index], rootUrl)
+    const doc = String(await fs.readFile(fixtureUrl)).trim()
+    const type = stem.split('-')[1]
 
-    t.doesNotThrow(function () {
+    assert.doesNotThrow(function () {
       const result = polarity(tokenize(doc))
       const positive = type === 'positive'
 
@@ -154,8 +156,7 @@ test('algorithm', function (t) {
       }
     }, type + ': `' + doc + '`')
   }
-
-  t.end()
+  /* eslint-enable no-await-in-loop */
 })
 
 /**
