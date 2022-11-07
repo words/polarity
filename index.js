@@ -1,23 +1,30 @@
 /**
- * @typedef {Object} Polarity
+ * @typedef Polarity
+ *   Info.
  * @property {number} polarity
+ *   Calculated polarity of input.
  * @property {number} positivity
+ *   Total positivity.
  * @property {number} negativity
+ *   Total negativity.
  * @property {Array<string>} positive
+ *   All positive words.
  * @property {Array<string>} negative
+ *   All negative words.
  *
  * @typedef {Record<string, number>} Inject
+ *   Values to inject.
  */
 
 import {afinn165} from 'afinn-165'
 import {emojiEmotion} from 'emoji-emotion'
 
-/** @type {Record<string, number>} */
+/** @type {Inject} */
 export const polarities = {}
 
 const own = {}.hasOwnProperty
 
-/** @type {Record<string, number>} */
+/** @type {Inject} */
 const emoji = {}
 let index = 0
 
