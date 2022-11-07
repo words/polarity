@@ -2,13 +2,14 @@ import fs from 'node:fs'
 import {emojiEmotion} from 'emoji-emotion'
 import {emojiToName} from 'gemoji'
 
+/** @type {Record<string, number>} */
 const data = {}
 let index = -1
 
 while (++index < emojiEmotion.length) {
-  data[emojiEmotion[index].emoji] = emojiEmotion[index].polarity
-  data[':' + emojiToName[emojiEmotion[index].emoji] + ':'] =
-    emojiEmotion[index].polarity
+  const info = emojiEmotion[index]
+  data[info.emoji] = info.polarity
+  data[':' + emojiToName[info.emoji] + ':'] = info.polarity
 }
 
 fs.writeFileSync(

@@ -158,7 +158,13 @@ test('algorithm', function (t) {
   t.end()
 })
 
-// Simple word tokenizer.
+/**
+ * Simple word tokenizer.
+ *
+ * @param {string} value
+ * @returns {Array<string>}
+ */
 function tokenize(value) {
-  return value.toLowerCase().match(/\S+/g)
+  const match = value.toLowerCase().match(/\S+/g)
+  return match ? [...match] : []
 }

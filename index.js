@@ -83,7 +83,7 @@ export function inject(values) {
  * Get the polarity of a word.
  *
  * @param {string} value
- * @param {Inject} inject
+ * @param {Inject} [inject]
  * @returns {number}
  */
 function getPolarity(value, inject) {
